@@ -1,55 +1,66 @@
 <body class="pace-done" style="">
+    @BlockArea("Header")
     <nav class="navbar navbar-static-top border-bottom row" style="margin-bottom: 0">
-        <div class="col-lg-3 ">
+        <div class="col-lg-1 ">
             <div class="navbar-header" role="navigation">
                 <a class="im" href="/"><img class="img-circle m-l-md m-b-n-md m-t-xs circle-border logo-fit img-lg" {% if Company.Image_base64 == blank %} src="/Content/Assets/companyLogo.png" {% else %} src="{{Company.Image_base64}}" {% endif %}> </a>
             </div>
-            <!--<div class="navbar-header ">
-                <span  class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
-            </div>-->  
-        </div>       
-        <div class="col-lg-9 ">
+            <!--<div class="navbar-header">
+                <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
+            </div>-->
+        </div>
+        <div class="col-lg-11 ">
             <!--<form id="article-search-form" action="/Article/Index" method="post" novalidate="novalidate">-->
-                <div id="article-search" class="navbar-header input-group m-t-lg" data-url="/Article/Search" style="width:650px; display: inline-table;">
-                    <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}">
-                    <ul class="result-box dropdown-menu dropdown-alerts" style="display:none; position:absolute;">
-                        <li class="preloader" style="display:none;">
-                            <div class="sk-spinner sk-spinner-wave">
-                                <div class="sk-rect1"></div>
-                                <div class="sk-rect2"></div>
-                                <div class="sk-rect3"></div>
-                                <div class="sk-rect4"></div>
-                                <div class="sk-rect5"></div>
+            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md" data-url="/Article/Search" style="width:650px; display: inline-table;">
+                <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}">
+                <ul class="result-box dropdown-menu dropdown-alerts" style="display:none; position:absolute;">
+                    <li class="preloader" style="display:none;">
+                        <div class="sk-spinner sk-spinner-wave">
+                            <div class="sk-rect1"></div>
+                            <div class="sk-rect2"></div>
+                            <div class="sk-rect3"></div>
+                            <div class="sk-rect4"></div>
+                            <div class="sk-rect5"></div>
+                        </div>
+                    </li>
+                </ul>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn btn-primary search-button"> <i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            @BlockArea("Menu1")
+            <ul class="m-t-md nav navbar-top-links navbar-right">
+                {% for menuItem in MenuItems %}
+                {% if  menuItem.Use_reference == true %}
+                <!--Odnoœnik-->
+                <li>
+                    {% if  menuItem.Use_link == true %}
+                    <a href="{{menuItem.Link}}">
+                        {% else %}
+                        <a href="/{{menuItem.Link}}">
+                            {% endif %}
+                            {{menuItem.Name}}
+                        </a>
+                </li>
+                {% else %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
+                        <i class="fa fa-caret-down m-r-xxs" style="font-size:12px;"></i>      {{menuItem.Name}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        {% for subItems in menuItem.Menu_items %}
+                        <li>
+                            <div class="link-block">
+                                <a href="../{{subItems.Link}}">
+                                    <strong>{{subItems.Name}}</strong>
+                                </a>
                             </div>
                         </li>
+                        {% endfor %}
                     </ul>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn btn-primary search-button"> <i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-            <!--</form>-->
-            <ul class="m-t-md nav navbar-top-links navbar-right">
-                <!--<li>
-                <span class="m-r-sm text-muted welcome-message">{{Title}}</span>
-            </li>-->
-                <!--<l
-                i>
-                <a href="/">
-                    Pulpit
-                </a>
-            </li>-->
-                <!--<l
-                i>
-                <a href="/Task">
-                    Wszystkie
-                </a>
-            </li>-->
-                <li>
-                <li>
-                    <a href="/Towary">
-                        Towary
-                    </a>
                 </li>
+                {% endif %}
+                {% endfor %}
                 <li id="cart-navbar" class="dropdown" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
                         <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
@@ -74,7 +85,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="divider"></li>
                 <li>
                     <form action="/Account/LogOff" class="" id="logoutForm" method="post">
                         {{LogOutAntiForgery}}
@@ -82,32 +92,35 @@
                     </form>
                 </li>
             </ul>
-        </div> 
-</nav>
-    <div id="wrapper" class="gray-bg" style="">                                
-            <div class="row" style="">
-                @RenderBody()
-            </div>
+            @BlockArea("Menu2")
+        </div>
+    </nav>
+    <div id="wrapper" class="gray-bg" style="">        
+        <div class="row" style="">
+            @BlockArea("BeforeContent")
+            @RenderBody()
+            @BlockArea("AfterContent")
+        </div>        
     </div>
 </body>
 <iframe id="downloadDocumentIframe" style="display:none;"></iframe>
 <script>
-        $(document).ready(function() {
-            $('.footable').footable();
-            $(document).on('click', '.download-file', function (event) {
-                var url = $(this).data('url');
-                document.getElementById('downloadDocumentIframe').src = url;
-            });
-            $('.file-uploader').fileUploader({                
-            });
-            $('#cart-navbar').cart({});
-            setTimeout( function () {
-                $(".truncate").dotdotdot({
-                    watch: 'window',
-                    wrap: 'letter'
-                },0);
-            });
-            $('#article-search').search({});
+    $(document).ready(function () {
+        $('.footable').footable();
+        $(document).on('click', '.download-file', function (event) {
+            var url = $(this).data('url');
+            document.getElementById('downloadDocumentIframe').src = url;
         });
+        $('.file-uploader').fileUploader({
+        });
+        $('#cart-navbar').cart({});
+        setTimeout(function () {
+            $(".truncate").dotdotdot({
+                watch: 'window',
+                wrap: 'letter'
+            }, 0);
+        });
+        $('#article-search').search({});
+    });
 </script>
 
