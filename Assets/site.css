@@ -4324,7 +4324,7 @@ video {
 }
 
 .wrapper-content {
-    padding: 20px 10px 40px;
+    padding: 20px 10px 0px;
 }
 
 #page-wrapper {
@@ -10535,3 +10535,13 @@ body.md-skin {
 /*#article-search .result-box .divider {
     background-color: #f4f4f4;    
 }*/
+.menu-block {
+    display:inline-flex;    
+}
+.menu-block.block-1 {    
+    width:100%;
+}
+    .menu-block p,.menu-block a,.menu-block span,.menu-block label{
+        margin:0 5px 0 0;
+    }
+    
