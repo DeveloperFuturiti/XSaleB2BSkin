@@ -1,0 +1,148 @@
+﻿<div class="wrapper wrapper-content">
+    <div class="col-md-12">
+        <div class="ibox">
+            <div class="ibox-title"><h5>{% if  ActionType == 1 %}Dodaj{% else %}Edytuj{% endif %}</h5></div>
+            <div class="ibox-content">
+                <form action="/User/AddEdit" class="form-horizontal" method="post" novalidate="novalidate">
+                    <div class="form-group">
+                    </div>
+                    <input data-val="true" id="ActionType" name="ActionType" type="hidden" value="{{ActionType}}">
+                    <input data-val="true" data-val-number="Wartość dla pola Id musi być liczbą" data-val-required="Pole Id jest wymagane." id="Id" name="Id" type="hidden" value="{{Id}}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="FirstName">Imię</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-required="Pole 'Imię' jest wymagane" id="FirstName" name="FirstName" type="text" value="{{FirstName}}">
+                            <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="LastName">Nazwisko</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-length="Pole Nazwisko musi być ciągiem o maksymalnej długości 200." data-val-length-max="200" id="LastName" name="LastName" type="text" value="{{LastName}}">
+                            <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ContactUserLogin">Login</label>
+                        <div class="col-sm-4">
+                            <input {% if ActionType == 2 %} readonly {% endif %} class="form-control" data-val="true" data-val-required="Pole 'Login' jest wymagane" data-val-length="Pole Login musi być ciągiem o maksymalnej długości 200." data-val-length-max="200" id="Login" name="ContactUserLogin" type="text" value="{{ContactUserLogin}}">
+                            <span class="field-validation-valid" data-valmsg-for="ContactUserLogin" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ContactPassword">Hasło</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-length="Pole Hasło musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" id="ContactPassword" name="ContactPassword" type="password" value="">
+                            <span class="field-validation-valid" data-valmsg-for="ContactPassword" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group PageId">
+                        <label class="col-sm-2 control-label" for="UserRoleId">Rola użytkownika</label>
+                        <div class="col-sm-4">
+                            <select title="Rola użytkownika" name="UserRoleId" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Rola użytkownika musi być liczbą" placeholder="Wybierz z listy">
+                                <option value="">-- Wybierz z listy --</option>
+                                {% for listItem in UserRoles %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="PhoneNumber">Nr. telefonu</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-length="Pole Nr telefonu musi być ciągiem o maksymalnej długości 50." data-val-length-max="50" id="PhoneNumber" name="PhoneNumber" type="text" value="{{PhoneNumber}}">
+                            <span class="field-validation-valid" data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="Description">Opis</label>
+                        <div class="col-sm-4">
+                            <textarea class="form-control" cols="20" id="Description" name="Description" rows="2">{{Description}}</textarea>
+                            <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ContactUserActive">Aktywny</label>
+                        <div class="col-sm-4">
+                            <div class="checkbox checkbox-primary m-t-xxs" style="">
+                                <input type="checkbox" id="ContactUserActive" value="true" name="ContactUserActive" {% if ContactUserActive == true %}checked{% endif %}>
+                                <label for="ContactUserActive"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-10">
+                            <h3>Ustawienia B2B</h3>
+                        </div>
+                    </div>
+                    <div class="form-group PageId">
+                        <label class="col-sm-2 control-label" for="CostCreationAreaId">Miejsce powstawania kosztów</label>
+                        <div class="col-sm-4">
+                            <select title="Miejsce powstawania kosztów" name="CostCreationAreaId" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Miejsce powstawania kosztów musi być liczbą" placeholder="Wybierz z listy">
+                                <option value="">-- Wybierz z listy --</option>
+                                {% for listItem in CostCreationAreaList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="CostLimit">Limit handlowy</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-number="Wartość dla pola Limit handlowy musi być liczbą" id="CostLimit" name="CostLimit" type="text" value="{{CostLimit}}">
+                            <span class="field-validation-valid" data-valmsg-for="CostLimit" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="SendOrderStatusInfo">Informuj o statusie zamówienia</label>
+                        <div class="col-sm-4">
+                            <div class="checkbox checkbox-primary  m-t-xxs" style="">
+                                <input type="checkbox" id="SendOrderStatusInfo" value="true" name="SendOrderStatusInfo" {% if SendOrderStatusInfo == true %}checked{% endif %}>
+                                <label for="SendOrderStatusInfo"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="HideOrderHistory">Ukryj rozliczenia i zamówienia</label>
+                        <div class="col-sm-4">
+                            <div class="checkbox checkbox-primary m-t-xxs" style="">
+                                <input type="checkbox" id="HideOrderHistory" value="true" name="HideOrderHistory" {% if HideOrderHistory == true %}checked{% endif %}>
+                                <label for="HideOrderHistory"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="RequireManagerOrderApproval">Konieczność zatwierdzania zamówień pracownika przez kierownika</label>
+                        <div class="col-sm-4">
+                            <div class="checkbox checkbox-primary m-t-xxs" style="">
+                                <input type="checkbox" id="RequireManagerOrderApproval" value="true" name="RequireManagerOrderApproval" {% if RequireManagerOrderApproval == true %}checked{% endif %}>
+                                <label for="RequireManagerOrderApproval"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group PageId">
+                        <label class="col-sm-2 control-label" for="ApprovalManagerId">Kierownik zatwierdzający</label>
+                        <div class="col-sm-4">
+                            <select title="Kierownik zatwierdzający" name="ApprovalManagerId" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Kierownik zatwierdzający musi być liczbą" placeholder="Wybierz z listy">
+                                <option value="">-- Wybierz z listy --</option>
+                                {% for listItem in ApprovalManagerList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-2">
+                            <a class="btn-default btn" href="/Uzytkownicy">Powrót</a>
+                            <button class="btn-primary btn" type="submit">Zapisz</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
