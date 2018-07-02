@@ -1,17 +1,17 @@
 <body class="pace-done" style="">
     @BlockArea("Header")
     <nav class="navbar navbar-static-top border-bottom row" style="margin-bottom: 0">
-        <div class="col-lg-1 ">
+        <div class="">
             <div class="navbar-header" role="navigation">
-                <a class="im" href="/"><img class="img-circle m-l-md m-b-n-md m-t-xs circle-border logo-fit img-lg" {% if Company.Image_base64 == blank %} src="/Content/Assets/companyLogo.png" {% else %} src="{{Company.Image_base64}}" {% endif %}> </a>
+                <a class="im" href="/"><img style="height: 100%; width: 100%; display: block;" class="img-fluid m-l-md  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{Company.Image_base64}}" {% endif %} style="height: 100%; width: 100%; display: block;"> </a>
             </div>
             <!--<div class="navbar-header">
                 <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
             </div>-->
         </div>
-        <div class="col-lg-11 ">
+        <div class="">
             <!--<form id="article-search-form" action="/Article/Index" method="post" novalidate="novalidate">-->
-            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md" data-url="/Article/Search" style="width:650px; display: inline-table;">
+            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="width:650px; display: inline-table;">
                 <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}">
                 <ul class="result-box dropdown-menu dropdown-alerts" style="display:none; position:absolute;">
                     <li class="preloader" style="display:none;">
@@ -61,7 +61,7 @@
                 </li>
                 {% endif %}
                 {% endfor %}
-                <li id="cart-navbar" class="dropdown" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">
+                <li id="cart-navbar" class="dropdown" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">                    
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
                         <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
                     </a>
@@ -86,9 +86,14 @@
                     </ul>
                 </li>
                 <li>
-                    <form action="/Account/LogOff" class="" id="logoutForm" method="post">
+                    
+                    <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
+                        {% if  UseLimits == true %}
+                        <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}}</strong></a>
+                        {% endif %}
+                        <br />
                         {{LogOutAntiForgery}}
-                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Wyloguj</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="no-padding"><i class="fa fa-sign-out fa-align-center "></i> Wyloguj</a>
                     </form>
                 </li>
             </ul>

@@ -24,8 +24,8 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="ContactUserLogin">Login</label>
-                        <div class="col-sm-4">
-                            <input {% if ActionType == 2 %} readonly {% endif %} class="form-control" data-val="true" data-val-required="Pole 'Login' jest wymagane" data-val-length="Pole Login musi być ciągiem o maksymalnej długości 200." data-val-length-max="200" id="Login" name="ContactUserLogin" type="text" value="{{ContactUserLogin}}">
+                        <div class="col-sm-4">                            
+                            <input {% if ActionType == 2 %} readonly {% endif %} class="form-control" data-val="true" data-val-email="Nieprawidłowy format adresu e-mail" data-val-length="Pole Login musi być ciągiem o maksymalnej długości 200." data-val-length-max="200" data-val-required="Pole &amp;apos;Login&amp;apos; jest wymagane" id="ContactUserLogin" name="ContactUserLogin" type="text" value="{{ContactUserLogin}}">
                             <span class="field-validation-valid" data-valmsg-for="ContactUserLogin" data-valmsg-replace="true"></span>
                         </div>
                     </div>
@@ -39,8 +39,7 @@
                     <div class="form-group PageId">
                         <label class="col-sm-2 control-label" for="UserRoleId">Rola użytkownika</label>
                         <div class="col-sm-4">
-                            <select title="Rola użytkownika" name="UserRoleId" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Rola użytkownika musi być liczbą" placeholder="Wybierz z listy">
-                                <option value="">-- Wybierz z listy --</option>
+                            <select title="Rola użytkownika" name="UserRoleId" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Rola użytkownika musi być liczbą" placeholder="Wybierz z listy">                                
                                 {% for listItem in UserRoles %}
                                 <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
                                 {% endfor %}

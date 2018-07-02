@@ -48,9 +48,9 @@
                             <div class="col-md-12">
                                 <div class="btn-group pull-right add-to-cart-container">
                                     <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{% if article.Quantity == null %} 0 {% else %} {{article.Quantity}} {% endif %} </button>
-                                    <button class="btn btn-white btn-sm order-quantity-container">
+                                    <div class="btn btn-white btn-sm order-quantity-container">
                                         <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1">
-                                    </button>
+                                    </div>
                                     <button class="btn btn-primary btn-sm add-to-cart" data-articleid="{{article.Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
                                 </div>
                             </div>

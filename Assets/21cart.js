@@ -34,6 +34,7 @@
                 success: function (data) {
                     if (data.Success) {
                         instance.updateMainCart(data.Data.cartId, data.Data.cartItems);
+                        ToastrNotification.showSuccessNotification('success', 'Dodano do koszyka');
                     } else {
                     }
                 }

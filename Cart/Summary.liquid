@@ -47,12 +47,16 @@
                            Razem: {{TotalAmount}} {{CurrencyTypeName}}
                         </h3>
                     </div>
-
                     <label> Forma dostawy:</label>
                     <span> {{DeliveryMethod}}</span>
                     <br />
                     <label> Forma płatności:</label>
                     <span> {{PaymentForm}}</span>
+                    {% if DisplayLimitWarning == true %}
+                    <h4 class="text-danger">
+                        {{LimitReasonDisplay}}, dostępny limit:  {{AvailableLimit}} z {{LimitAmount}}
+                    </h4>
+                    {% endif %}
                 </div>                
             </div>
         </div>

@@ -24,24 +24,39 @@
         instance.$element.on('click', '.finalize-order', function (e) {
             var $this = $(e.currentTarget);
             var id = $this.closest('.cart-details').data('id');            
-            if (instance.submitAddressDataForm.apply(instance, [false, false])) {
-                if (instance.finalizeOrder()) {
-                    instance.options.finalized = true;
-                    swal({
-                        title: "",
-                        text: 'Zamówienie zostało zatwierdzone',
-                        timer: 3 * 1000,
-                        showConfirmButton: true,
-                        type: "success",
-                        html: true,                        
-                        //showCancelButton: true,
-                        //cancelButtonText: 'OK'
-                    }, function () {
-                        location = '/';
-                    });
-                    
+            let submitWithMessage = function () {
+                if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+                    var result = instance.finalizeOrder();
+                    if (result.Success) {
+                        instance.options.finalized = true;
+                        swal({
+                            title: "",
+                            text: 'Zamówienie zostało zatwierdzone',
+                            timer: 3 * 1000,
+                            showConfirmButton: true,
+                            type: "success",
+                            html: true,                        
+                            //showCancelButton: true,
+                            //cancelButtonText: 'OK'
+                        }, function () {
+                            location = '/';
+                        });                    
+                    } else {
+                        console.log(result.Data.Errors);
+                        SAlert.Warning(result.Data.ErrorMessage);
+                    }
                 }
-            }
+            };                        
+            if (instance.checkLimitWarning.apply(instance,[])) {                
+                SAlert.Confirm({
+                    content: 'Limit kredytowy został przekroczony, czy na pewno chcesz zrealizować zamówienie?',
+                    handler: function () {
+                        submitWithMessage();
+                    }
+                },false);
+            } else {                
+                submitWithMessage();
+            }                                                            
         });
         window.onbeforeunload = function () {
             if (!instance.submitAddressDataForm.apply(instance, [false, false])) {
@@ -62,9 +77,30 @@
             }
         });
         if (result == null && result.responseJSON == null) 
-            return false;
+            return { Success: false };
         else 
-            return result.responseJSON.Success;                        
+            return result.responseJSON;                        
+    };
+    CartSummary.prototype.checkLimitWarning = function () {
+        var instance = this;
+        var id = instance.$element.data('id');
+        var formSerialized = instance.references.$addressDataForm.serialize();
+        formSerialized.Id = id;
+        var result = $.ajax({
+            type: 'POST',
+            url: '/Cart/CheckLimitWarning',
+            cache: false,
+            data: { orderId: id },
+            async: false,
+            success: function (data) {
+            }
+        });
+        if (result.responseJSON != null && result.responseJSON != null && result.responseJSON.Success && result.responseJSON.Data.DisplayWarning==true) {
+            return true;
+        } else {
+            return false;
+        }        
+        return false;
     };
     CartSummary.prototype.submitAddressDataForm = function (async, reloadSummary) {
         var instance = this;

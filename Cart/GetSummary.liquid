@@ -1,8 +1,10 @@
 <tbody>
+    {% if  UseLimits == true %}
     <tr>
         <td class="no-borders">Suma: <span class="font-bold">{{SumAmount}} {{CurrencyTypeName}}</span></td>
-        <td class="no-borders">Limit kredytowy: <span class="font-bold">1500 {{CurrencyTypeName}}</span></td>
+        <td class="no-borders ">Dostępny limit: <span class="font-bold {% if  Available == 0 %} text-danger {% endif %}">{{Available}} {{CurrencyTypeName}}</span></td>
     </tr>
+    {% endif %}
     <tr>
         <td class="no-borders">VAT: <span class="font-bold">28,29 {{CurrencyTypeName}}</span></td>
         <td class="no-borders"></td>

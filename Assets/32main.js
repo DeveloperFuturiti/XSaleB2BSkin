@@ -79,14 +79,14 @@ var SAlert = {
     },
     Confirm: function (config, closeOnConfirm) {
         swal({
-            title: ResourcesLocalization.Confirmation,
+            title: 'Potwierdzenie',
             text: config.content,
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: ResourcesLocalization.Yes,
+            confirmButtonText: 'Tak',
             closeOnConfirm: hasValue(closeOnConfirm) ? closeOnConfirm : true,
-            cancelButtonText: ResourcesLocalization.No,
+            cancelButtonText: 'Nie',
             html: true
         }, function (isConfirm) {
             if (isConfirm) {

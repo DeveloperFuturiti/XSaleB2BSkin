@@ -59,7 +59,9 @@
         instance.$element.on('click', '.go-to-summary', function (e) {
             var $this = $(e.currentTarget);
             var id = $this.closest('.cart-details').data('id');
+            if (instance.validateAdditionalDataForm()) {
                 location = '/Koszyk/Podsumowanie/' + id;
+            }                
         });
         instance.$element.on('click', '.send-offer', function (e) {
             var $this = $(e.currentTarget);
