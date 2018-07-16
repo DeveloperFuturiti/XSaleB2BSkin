@@ -153,7 +153,14 @@
         </div>
         <div class="ibox float-e-margins border-left-right border-bottom m-b-sm">
             <div class="ibox-content">                
-                <form id="additional-summary-data" action="javascript:void(0);" class="form-horizontal" method="post" novalidate="novalidate">                    
+                <form id="additional-summary-data" action="javascript:void(0);" class="form-horizontal" method="post" novalidate="novalidate"> 
+                    <span class="field-validation-valid text-danger" data-valmsg-for="PaymentForm" data-valmsg-replace="true"></span>
+                    <select title="Rodzaj transportu" name="PaymentForm" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Forma płatności musi być liczbą" data-val-required="Pole Forma płatności jest wymagane." placeholder="Wybierz z listy">
+                        <option value="">-- Wybierz formę płatności --</option>
+                        {% for listItem in PaymentForms %}
+                            <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                        {% endfor %}
+                    </select>                   
                     <span class="field-validation-valid text-danger" data-valmsg-for="DeliveryMethod" data-valmsg-replace="true"></span>
                     <select title="Rodzaj transportu" name="DeliveryMethod" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Rodzaj transportu musi być liczbą" data-val-required="Pole Rodzaj transportu jest wymagane." placeholder="Wybierz z listy">
                         <option value="">-- Wybierz rodzaj transportu --</option>

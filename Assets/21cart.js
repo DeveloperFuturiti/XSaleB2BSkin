@@ -39,7 +39,6 @@
                     }
                 }
             });
-
         });
         instance.$element.on('click', 'span.description', function () {
             var $this = $(this);

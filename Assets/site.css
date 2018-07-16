@@ -10544,6 +10544,7 @@ body.md-skin {
     .menu-block p,.menu-block a,.menu-block span,.menu-block label{
         margin:0 5px 0 0;
     }
+
     /* Toastr custom style */
 /*#toast-container > .toast {
   background-image: none !important; }
