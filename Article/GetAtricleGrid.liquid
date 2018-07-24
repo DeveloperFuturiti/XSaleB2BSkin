@@ -20,20 +20,22 @@
                         <label for="select-article-{{article.Id}}">&nbsp;</label>
                     </div>
                     <div class="product-image-box">
+                        <a href="/Towar/{{article.Id}}" style="color:inherit">
                         <img class="image" alt="image" {% if article.Offer_id == null %} src="/Content/Assets/article.png" {% else %} src="/Article/GetImageByOfferId?offerId={{article.Offer_id}}" {% endif %}>
+                        </a>
                     </div>
                     <div class="product-desc">
                         <span class="product-price">
                             {% if  article.Price == null %}
                             -
                             {% else %}
-                            {{article.Price}} {{CurrencyTypeName}}
+                            {{article.Price}} {{CurrencyTypeName}} netto
                             {% endif %}
                         </span>
                         <small class="text-muted">{{article.Code}}</small>
                         <small class="text-muted">{{article.EAN}}</small>
                         <div id="trun-{{article.guid}}" class="" style="max-height:66px;">
-                            <a href="/Towar/{{article.Id}}" class="product-name"> {{article.Name}} </a>
+                            <a href="/Towar/{{article.Id}}" class="product-name">{{article.Name}} </a>
                         </div>
                         <script type="text/javascript">
                             $("#trun-{{article.guid}}").dotdotdot({

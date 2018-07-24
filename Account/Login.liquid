@@ -1,16 +1,19 @@
 <div class="loginColumns animated fadeInDown">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="font-bold">Witaj w Panelu Klienta XSale</h2>
-            <p>
-                <!--Opis-->
-            </p>            
-            <p>
-                <!--Logo-->
-            </p> 
+            {% if DescriptionIsEmpty %}
+                <!--<h2 class="font-bold text-center">Witaj w Panelu Klienta XSale</h2>-->
+            {% else %}
+                {{Description}}
+            {% endif %}
             <p>
                 <!--<small>post scriptum</small>-->
             </p>
+            {% if LogoBase64 != blank %}
+            <p class="m-t-md text-center">
+                <a href="javascript:void(0);"><img src="{{LogoBase64}}" style="max-width:350px;"></a>
+            </p>
+            {% endif %}                           
         </div>
         <div class="col-md-6">
             <div class="ibox-content">
@@ -45,3 +48,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        changeFavicon('/File/GetFavicon?orgId={{dbId}}&rand=' + makeid());
+    });
+</script>

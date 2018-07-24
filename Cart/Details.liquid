@@ -39,7 +39,7 @@
                                         <span class="help-block m-b-none text-danger available-quantity-alert" style="{% if article.Show_available_quantity_alert == false %} display:none; {% endif %}">Wybrana ilość przekracza dostępny stan. Czas realizacji może wynieść x dni.</span>
                                     </td>
                                     <td style="min-width:90px;">
-                                        <span>{{article.Price}} {{CurrencyTypeName}}</span>
+                                        <span>{{article.Price}} {{CurrencyTypeName}} netto</span>
                                         <!--<s class="small text-muted">{{article.Stock_price}}</s>-->
                                     </td>
                                     <td>
@@ -63,7 +63,7 @@
                                     <td style="min-width:100px;">
                                         <label>Łącznie</label>
                                         <br />
-                                        <span><label class="total-price">{{article.Total_price}}</label> <label>{{CurrencyTypeName}}</label></span>
+                                        <span><label class="total-price">{{article.Total_price}}</label> <label>{{CurrencyTypeName}}</label> <label>netto</label></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -76,7 +76,7 @@
                 <button class="btn btn-primary pull-right go-to-summary"><i class="fa fa fa-shopping-cart"></i> Zamawiam</button>
                 <div class="btn-group">
                     <a href="/Towary" class="btn btn-white "><i class="fa fa-arrow-left"></i> Wróć do zakupów</a>
-                    <a href="javascript:void(0);" class="btn btn-primary send-offer"><i class="fa fa-paper-plane"></i> Wyślij "Ofertę"</a>
+                    <!--<a href="javascript:void(0);" class="btn btn-primary send-offer"><i class="fa fa-paper-plane"></i> Wyślij "Ofertę"</a>-->
                 </div>                
             </div>
         </div>

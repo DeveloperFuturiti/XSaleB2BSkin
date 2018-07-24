@@ -110,7 +110,8 @@
 </body>
 <iframe id="downloadDocumentIframe" style="display:none;"></iframe>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () {        
+        changeFavicon('/File/GetFavicon?orgId={{OrganizationId}}&rand=' + makeid())
         $('.footable').footable();
         $(document).on('click', '.download-file', function (event) {
             var url = $(this).data('url');

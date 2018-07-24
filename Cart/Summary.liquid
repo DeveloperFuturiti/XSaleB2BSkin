@@ -14,7 +14,7 @@
                                 <th style="width: 1%" class="text-center">Id.</th>
                                 <th>Artykuł</th>
                                 <th style="width: 4%" class="text-center">Ilość</th>
-                                <th style="width: 15%" class="text-center">Cena</th>
+                                <th style="width: 15%" class="text-center">Cena netto</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,7 +24,7 @@
                                 <td class="text-center">{{article.Order_item_id}}</td>
                                 <td>{{article.Name}}</td>
                                 <td class="text-center">{{article.Ordered_quantity}} szt.</td>
-                                <td class="text-center"><span class="label label-primary price-label">{{article.Total_price}} {{CurrencyTypeName}}</span></td>
+                                <td class="text-center"><span class="label label-primary price-label">{{article.Total_price}} {{CurrencyTypeName}} </span></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -35,16 +35,19 @@
                         <label>Netto:</label>
                         <span> {{NetPrice}} {{CurrencyTypeName}}</span>
                         <br />
-                        <label>VAT:</label>
+                        <!--<label>VAT:</label>
                         <span> {{VatAmount}} {{CurrencyTypeName}}</span>
                         <br />
                         <label>Brutto:</label>
                         <span> {{GrossPrice}} {{CurrencyTypeName}}</span>   
-                        <br />
+                        <br />-->
                         <label>Koszt dostawy:</label>
-                        <span> {{ShipmentPrice}} {{CurrencyTypeName}}</span>                      
+                        <span> {{ShipmentPrice}} {{CurrencyTypeName}} netto</span> 
+                        <br />
+                        <br />                                             
+                        <br />
                         <h3 class="text-navy">
-                           Razem: {{TotalAmount}} {{CurrencyTypeName}}
+                           Razem netto: {{TotalAmount}} {{CurrencyTypeName}}
                         </h3>
                     </div>
                     <label> Forma dostawy:</label>
@@ -52,6 +55,9 @@
                     <br />
                     <label> Forma płatności:</label>
                     <span> {{PaymentForm}}</span>
+                    <br />
+                    <label> Miejsce powstania kosztu:</label>
+                    <span> {{CostCenter}}</span>
                     {% if DisplayLimitWarning == true %}
                     <h4 class="text-danger">
                         {{LimitReasonDisplay}}, dostępny limit:  {{AvailableLimit}} z {{LimitAmount}}
@@ -185,7 +191,7 @@
                                 <button class="btn btn-primary pull-right finalize-order"><i class="fa fa fa-check"></i> Zamawiam z obowiązkiem zapłaty</button>
                                 <div class="btn-group">
                                     <a href="/Towary" class="btn btn-white "><i class="fa fa-arrow-left"></i> Wróć do zakupów</a>
-                                    <a href="javascript:void(0);" class="btn btn-primary "><i class="fa fa-paper-plane"></i> Wyślij "do akceptacji"</a>
+                                    <!--<a href="javascript:void(0);" class="btn btn-primary "><i class="fa fa-paper-plane"></i> Wyślij "do akceptacji"</a>-->
                                 </div>
                             </div>
                         </div>

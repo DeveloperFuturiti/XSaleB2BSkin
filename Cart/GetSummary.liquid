@@ -5,16 +5,20 @@
         <td class="no-borders ">Dostępny limit: <span class="font-bold {% if  Available == 0 %} text-danger {% endif %}">{{Available}} {{CurrencyTypeName}}</span></td>
     </tr>
     {% endif %}
-    <tr>
+    <!--<tr>
         <td class="no-borders">VAT: <span class="font-bold">28,29 {{CurrencyTypeName}}</span></td>
+        <td class="no-borders"></td>
+    </tr>-->
+    <tr>
+        <td class="no-borders"> Transport: <span class="font-bold">{{DeliveryCost}} {{CurrencyTypeName}} netto</span></td>
         <td class="no-borders"></td>
     </tr>
     <tr>
-        <td class="no-borders"> Transport: <span class="font-bold">{{DeliveryCost}} {{CurrencyTypeName}} </span></td>
+        <td class="no-borders"> Miejsce powstania kosztu: <span class="font-bold">{{CostCenter}}</span></td>
         <td class="no-borders"></td>
     </tr>
     <tr class="summary-total-amount">
         <td class="no-borders"><h2>Łącznie</h2></td>
-        <td class="no-borders"><h2>{{TotalAmount}} {{CurrencyTypeName}}</h2></td>
+        <td class="no-borders"><h2>{{TotalAmount}} {{CurrencyTypeName}} netto</h2></td>
     </tr>
 </tbody>
