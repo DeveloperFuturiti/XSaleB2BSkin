@@ -335,7 +335,7 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #0577be;
   text-decoration: none;
 }
 
@@ -4701,7 +4701,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .pagination > .disabled > a,
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
-  color: #999999;
+  color: #767676;
   cursor: not-allowed;
   background-color: #ffffff;
   border-color: #dddddd;

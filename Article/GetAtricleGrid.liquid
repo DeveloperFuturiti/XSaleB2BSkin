@@ -16,7 +16,7 @@
                         <input class="select-check" data-val="true" id="IncludeRelizationTime" name="Compare" type="checkbox" value="{{article.Id}}">             
                     </div>-->
                     <div class="select-check-container checkbox checkbox-primary checkbox-inline m-t-xxs">
-                        <input type="checkbox" id="select-article-{{article.Id}}" value="{{article.Id}}" name="select-article-{{article.Id}}">
+                        <input type="checkbox" id="select-article-{{article.Id}}" value="{{article.Id}}" name="select-article-{{article.Id}}" aria-hidden="true">
                         <label for="select-article-{{article.Id}}">&nbsp;</label>
                     </div>
                     <div class="product-image-box">
@@ -51,7 +51,7 @@
                                 <div class="btn-group pull-right add-to-cart-container">
                                     <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{% if article.Quantity == null %} 0 {% else %} {{article.Quantity}} {% endif %} </button>
                                     <div class="btn btn-white btn-sm order-quantity-container">
-                                        <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1">
+                                        <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość sztuk">
                                     </div>
                                     <button class="btn btn-primary btn-sm add-to-cart" data-articleid="{{article.Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
                                 </div>

@@ -54,7 +54,7 @@ h5 {
 }
 
 .nav.navbar-right > li > a {
-    color: #999c9e;
+    color: #767676;
 }
 
 .nav > li.active > a {
@@ -807,8 +807,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     }
 
 .btn-primary {
-    background-color: #428bca;
-    border-color: #428bca;
+    background-color: #0072bc;
+    border-color: #0072bc;
     color: #FFFFFF;
 }
 
@@ -1304,7 +1304,7 @@ button.dim:active:before {
 
 .label-primary,
 .badge-primary {
-    background-color: #1ab394;
+    background-color: #29856A;
     color: #FFFFFF;
 }
 
@@ -2948,23 +2948,23 @@ label.error {
 }
 
 .toast {
-    background-color: #1ab394;
+    background-color: #29856a;
 }
 
 .toast-success {
-    background-color: #1ab394;
+    background-color: #29856a;
 }
 
 .toast-error {
-    background-color: #ed5565;
+    background-color: #e11728;
 }
 
 .toast-info {
-    background-color: #23c6c8;
+    background-color: #328282;
 }
 
 .toast-warning {
-    background-color: #f8ac59;
+    background-color: #bd5a1e;
 }
 
 .toast-top-full-width {
@@ -4938,7 +4938,7 @@ table.table-mail tr td {
     }
 /* COLORS */
 .text-navy {
-    color: #1ab394;
+    color: #29856a;
 }
 
 .text-primary {
@@ -4958,11 +4958,11 @@ table.table-mail tr td {
 }
 
 .text-danger {
-    color: #ed5565;
+    color: #e11728;
 }
 
 .text-muted {
-    color: #888888;
+    color: #767676;
 }
 
 .text-white {
@@ -6662,7 +6662,7 @@ table.shoping-cart-table {
     font-size: 14px;
     font-weight: 600;
     color: #ffffff;
-    background-color: #1ab394;
+    background-color: #29856a;
     padding: 6px 12px;
     position: absolute;
     top: -32px;

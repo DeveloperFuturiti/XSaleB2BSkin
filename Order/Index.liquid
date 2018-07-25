@@ -11,3 +11,12 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table-datatable-order-list_wrapper th").attr("role", "columnheader");
+    });
+    $(document).on('init.dt', function () {
+        $("#table-datatable-order-list_wrapper tbody tr").removeAttr("role");
+    });
+</script>

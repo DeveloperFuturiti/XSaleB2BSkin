@@ -59,7 +59,7 @@
                                 <div class="btn-group pull-right">
                                     <button class="btn btn-white " title="Dostępne">{% if article.Quantity == null %} 0 {% else %} {{Article.Quantity}} {% endif %} </button>
                                     <button class="btn btn-white  order-quantity-container">
-                                        <input class="quantity" type="text" name="orderQuantity" placeholder="1">
+                                        <input class="quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość">
                                     </button>
                                     <button class="btn btn-primary add-to-cart" data-articleid="{{Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
                                 </div>

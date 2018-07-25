@@ -2,12 +2,21 @@
     <div class="col-lg-12">
         <div class="ibox  border-left-right border-bottom">
             <div class="ibox-title">                
-                <h5>Użytkownicy</h5>                
+                <h5>Użytkownicy</h5>
             </div>
             <div class="ibox-content" >
                 <a href="/Uzytkownik" class="btn btn-sm btn-primary pull-right m-t-none"><i class="fa fa fa-plus"></i> Dodaj użytkownika</a>
                 {{Grid}}
-            </div>            
+            </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table-user-list_wrapper th").attr("role", "columnheader");
+    });
+    $(document).on('init.dt', function () {
+        $("#table-user-list_wrapper tbody tr").removeAttr("role");
+    });
+</script>

@@ -3,7 +3,7 @@
     <nav class="navbar navbar-static-top border-bottom row" style="margin-bottom: 0">
         <div class="">
             <div class="navbar-header" role="navigation">
-                <a class="im" href="/"><img style="height: 100%; width: 100%; display: block;" class="img-fluid m-l-md  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{Company.Image_base64}}" {% endif %} style="height: 100%; width: 100%; display: block;"> </a>
+                <a class="im" href="/" aria-hidden="true"> <img style="height: 100%; width: 100%; display: block;" class="img-fluid m-l-md  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{Company.Image_base64}}" {% endif %} style="height: 100%; width: 100%; display: block;" alt="Logo"> </a>
             </div>
             <!--<div class="navbar-header">
                 <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
@@ -12,7 +12,7 @@
         <div class="">
             <!--<form id="article-search-form" action="/Article/Index" method="post" novalidate="novalidate">-->
             <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="width:650px; display: inline-table;">
-                <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}">
+                <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukan¹ frazê">
                 <ul class="result-box dropdown-menu dropdown-alerts" style="display:none; position:absolute;">
                     <li class="preloader" style="display:none;">
                         <div class="sk-spinner sk-spinner-wave">
@@ -25,7 +25,7 @@
                     </li>
                 </ul>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn btn-primary search-button"> <i class="fa fa-search"></i></button>
+                    <button type="button" class="btn btn btn-primary search-button" title="Szukaj"> <i class="fa fa-search"></i></button>
                 </span>
             </div>
             @BlockArea("Menu1")

@@ -76,19 +76,19 @@
                                 <!--<p class="font-bold">Adres wysyłki</p>-->
                                 <input name="CartId" value="{{Id}}" type="text" style="display:none;">
                                 <div class="m-b-xs">
-                                    <input readonly name="Name" value="{{ShipmentAddress.Name}}" title="Imię, nazwisko / nazwa firmy" placeholder="Imię, nazwisko / nazwa firmy" class="form-control valid" data-val="true" data-val-length="Pole Imię, nazwisko / nazwa firmy musi być ciągiem o maksymalnej długości 2000." data-val-required="Pole 'Imię, nazwisko / nazwa firmy' jest wymagane." data-val-length-max="2000" aria-required="true" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                    <input readonly name="Name" value="{{ShipmentAddress.Name}}" title="Imię, nazwisko / nazwa firmy" placeholder="Imię, nazwisko / nazwa firmy" class="form-control valid" data-val="true" data-val-length="Pole Imię, nazwisko / nazwa firmy musi być ciągiem o maksymalnej długości 2000." data-val-required="Pole 'Imię, nazwisko / nazwa firmy' jest wymagane." data-val-length-max="2000" aria-required="true" aria-invalid="false" type="text">
                                     <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="row m-r-xxs m-l-none">
                                     <div class="col-xs-6 col-md-6">
                                         <div class="form-group m-b-xs">
-                                            <input readonly name="MobilePhone" value="{{ShipmentAddress.Mobile_phone}}" title="Nr. Tel. Komórkowego" placeholder="Nr. Tel. Komórkowego" class="form-control valid" data-val="true" data-val-length="Nr. Tel. Komórkowego musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="MobilePhone" value="{{ShipmentAddress.Mobile_phone}}" title="Nr. Tel. Komórkowego" placeholder="Nr. Tel. Komórkowego" class="form-control valid" data-val="true" data-val-length="Nr. Tel. Komórkowego musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="MobilePhone" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6 pull-right">
                                         <div class="form-group m-b-xs ">
-                                            <input readonly name="Phone" value="{{ShipmentAddress.Phone}}" title="Nr. Telefonu" placeholder="Nr. Telefonu" class="form-control valid" data-val="true" data-val-length="Nr. Telefonu musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="Phone" value="{{ShipmentAddress.Phone}}" title="Nr. Telefonu" placeholder="Nr. Telefonu" class="form-control valid" data-val="true" data-val-length="Nr. Telefonu musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Phone" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
@@ -96,13 +96,13 @@
                                 <div class="row m-r-xxs m-l-none">
                                     <div class="col-xs-8 col-md-8">
                                         <div class="form-group m-b-xs">
-                                            <input readonly name="Street" value="{{ShipmentAddress.Street}}" title="Ulica" placeholder="Ulica" class="form-control valid" data-val="true" data-val-length="Pole Ulica musi być ciągiem o maksymalnej długości 200." data-val-length-max="200" data-val-required="Pole Ulica jest wymagane." aria-required="true" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="Street" value="{{ShipmentAddress.Street}}" title="Ulica" placeholder="Ulica" class="form-control valid" data-val="true" data-val-length="Pole Ulica musi być ciągiem o maksymalnej długości 200." data-val-length-max="200" data-val-required="Pole Ulica jest wymagane." aria-required="true" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Street" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 col-md-4 pull-right">
                                         <div class="form-group m-b-xs ">
-                                            <input readonly name="StreetNumber" value="{{ShipmentAddress.Street_number}}" title="Numer budynku/lokalu" placeholder="Nr. budynku/lokalu" class="form-control valid" data-val="true" data-val-length="Pole Numer budynku i lokalu musi być ciągiem o maksymalnej długości 20." data-val-length-max="20" data-val-required="Pole Numer budynku i lokalu jest wymagane." aria-required="true" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="StreetNumber" value="{{ShipmentAddress.Street_number}}" title="Numer budynku/lokalu" placeholder="Nr. budynku/lokalu" class="form-control valid" data-val="true" data-val-length="Pole Numer budynku i lokalu musi być ciągiem o maksymalnej długości 20." data-val-length-max="20" data-val-required="Pole Numer budynku i lokalu jest wymagane." aria-required="true" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="StreetNumber" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                 <div class="row m-r-xxs m-l-none">
                                     <div class="col-xs-4 col-md-4">
                                         <div class="form-group m-b-xs">
-                                            <input readonly name="ZipCode" value="{{ShipmentAddress.Zip_code}}" title="Kod pocztowy" placeholder="Kod pocztowy" class="form-control valid" data-val="true" data-val-length="Pole Kod pocztowy musi być ciągiem o maksymalnej długości 30." data-val-length-max="30" data-val-required="Pole Kod pocztowy jest wymagane." aria-required="true" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="ZipCode" value="{{ShipmentAddress.Zip_code}}" title="Kod pocztowy" placeholder="Kod pocztowy" class="form-control valid" data-val="true" data-val-length="Pole Kod pocztowy musi być ciągiem o maksymalnej długości 30." data-val-length-max="30" data-val-required="Pole Kod pocztowy jest wymagane." aria-required="true" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="ZipCode" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
@@ -118,25 +118,25 @@
                                         <div class="form-group m-b-xs ">
                                             <!--<label>CV </label>-->
                                             <!--<p class="font-bold m-b-none">Adres wysyłki</p>-->
-                                            <input readonly name="Post" value="{{ShipmentAddress.Post}}" title="Poczta" placeholder="Poczta" class="form-control valid" data-val="true" data-val-length="Pole Poczta musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="true" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="Post" value="{{ShipmentAddress.Post}}" title="Poczta" placeholder="Poczta" class="form-control valid" data-val="true" data-val-length="Pole Poczta musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="true" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Post" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="m-b-xs">
-                                    <input readonly name="City" value="{{ShipmentAddress.City}}" title="Miasto" placeholder="Miasto" class="form-control valid" data-val="true" data-val-length="Pole Miasto musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="true" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                    <input readonly name="City" value="{{ShipmentAddress.City}}" title="Miasto" placeholder="Miasto" class="form-control valid" data-val="true" data-val-length="Pole Miasto musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="true" aria-invalid="false" type="text">
                                     <span class="field-validation-valid text-danger" data-valmsg-for="City" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="row m-r-xxs m-l-none">
                                     <div class="col-xs-6 col-md-6">
                                         <div class="form-group m-b-xs">
-                                            <input readonly name="Voivodeship" value="{{ShipmentAddress.Voivodeship}}" title="Województwo" placeholder="Województwo" class="form-control valid" data-val="true" data-val-length="Pole Miasto musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="Voivodeship" value="{{ShipmentAddress.Voivodeship}}" title="Województwo" placeholder="Województwo" class="form-control valid" data-val="true" data-val-length="Pole Miasto musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Voivodeship" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-md-6 pull-right">
                                         <div class="form-group m-b-xs ">
-                                            <input readonly name="Country" value="{{ShipmentAddress.Country}}" title="Kraj" placeholder="Kraj" class="form-control valid" data-val="true" data-val-length="Pole Kraj musi być ciągiem o maksymalnej długości 50." data-val-length-max="50" aria-required="false" aria-invalid="false" aria-describedby="Code-error" type="text">
+                                            <input readonly name="Country" value="{{ShipmentAddress.Country}}" title="Kraj" placeholder="Kraj" class="form-control valid" data-val="true" data-val-length="Pole Kraj musi być ciągiem o maksymalnej długości 50." data-val-length-max="50" aria-required="false" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Country" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
