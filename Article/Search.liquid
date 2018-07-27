@@ -5,11 +5,11 @@
         {% endif %}    
         <li class="result m-t-xs"> 
             <div class="dropdown-messages-box m-b-xs m-t-xxs" style="min-height:66px; padding:3px;">
-                <a href="/Towar/{{item.Article.Id}}" class="">
-                    <img alt="" class="pull-left m-r-xs img-shadow" style="max-height:60px;" src="/Article/GetImageByOfferId?offerId={{item.Article.Offer_id}}">
+                <a href="/Towar/{{item.Article.Id}}" class="" aria-hidden="true">
+                    <img alt="Przejdź do oferty" class="pull-left m-r-xs img-shadow" style="max-height:60px;" src="/Article/GetImageByOfferId?offerId={{item.Article.Offer_id}}">
                 </a>
                 <div class="media-body">
-                    <a href="/Towar/{{item.Article.Id}}" class="">
+                    <a href="/Towar/{{item.Article.Id}}" class="" aria-hidden="true">
                         <strong class="pull-right m-r-xs m-t-xs">{{item.Article.Price}} {{CurrencyTypeName}}</strong>
                         <strong class="">{{item.Article.Name}}</strong> <br>
                         <small class="text-muted">{{item.Tags}}</small><br>                

@@ -821,8 +821,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     .btn-primary:active:hover,
     .btn-primary.active:hover,
     .btn-primary.active:focus {
-        background-color: #66a2d6;
-        border-color: #66a2d6;
+        background-color: #0577be;
+        border-color: #0577be;
         color: #FFFFFF;
     }
 
