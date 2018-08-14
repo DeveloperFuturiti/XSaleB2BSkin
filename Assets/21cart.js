@@ -45,13 +45,23 @@
             var cartId = $this.data('cartid');
             location = '/Koszyk/' + cartId;
         });
+        instance.$element.on('click', 'div.description', function (e) {
+            if ($(e.target).is('label')||$(e.target).is('input')) {
+
+            } else {
+                var $this = $(this);
+                var cartId = $this.data('cartid');
+                location = '/Koszyk/' + cartId;
+            }
+        });
         instance.$element.on('click', '.dropdown-toggle', function () {
             instance.loadCartList();
         });
         instance.$element.on('click', 'a.add-cart', function () {
             instance.addCart();
         });
-        instance.$element.on('click', 'span.remove-cart', function () {
+        instance.$element.on('click', 'span.remove-cart', function (event) {
+            event.stopPropagation();
             var $this = $(this);
             var cartId = $this.data('cartid');           
             swal({

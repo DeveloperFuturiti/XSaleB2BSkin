@@ -11,7 +11,7 @@ function replaceAll(find, replace, str) {
 
 var SAlert = {
     Error: function (message) {
-        swal(ResourcesLocalization.AnErrorOccured, message, "error");
+        swal("Wystąpił błąd", message, "error");
     },
 
     Error2: function (title, message) {
@@ -101,7 +101,7 @@ var SAlert = {
 
     DeleteAjaxConfirm: function (deleteUrl, data, successHandler, errorHandler) {
         SAlert.Confirm({
-            content: ResourcesLocalization.DeleteItemConfirm,
+            content: 'Czy na pewno chcesz usunąć element?',
             handler: function () {
                 AjaxExtension.doPost(deleteUrl, data, successHandler, errorHandler);
             }

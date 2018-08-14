@@ -3,7 +3,7 @@
 <li class="cart-container">
     <a class="cart-instance" href="javascript:void(0);">
         
-        <div >              
+        <div class="description" data-cartid="{{cart.Id}}">              
                 <span class="radio radio-primary">
                     <input  type="radio" id="select-cart-{{cart.Id}}" value="{{cart.Id}}" {% if  cart.Selected == true %} checked="checked" {% endif %} name="select-cart-{{cart.Id}}">
                     <label title="Wybierz koszyk" for="select-cart-{{cart.Id}}">&nbsp; </label>

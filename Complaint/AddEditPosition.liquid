@@ -1,0 +1,39 @@
+﻿<div class="wrapper wrapper-content">
+    <div class="col-md-12">
+        <div class="ibox">
+            <div class="ibox-title"><h5>{% if  ActionType == 1 %}Dodaj{% else %}Edytuj{% endif %}</h5></div>
+            <div class="ibox-content">
+                <form action="/Complaint/AddEditPosition" class="form-horizontal" method="post" novalidate="novalidate">
+                    <div class="form-group">
+                    </div>
+                    <input data-val="true" id="ActionType" name="ActionType" type="hidden" value="{{ActionType}}">
+                    <input data-val="true" data-val-number="Wartość dla pola Id musi być liczbą" data-val-required="Pole Id jest wymagane." id="Id" name="Id" type="hidden" value="{{Id}}">
+                    <input data-val="true" data-val-number="Wartość dla pola ComplaintId musi być liczbą" id="ComplaintId" name="ComplaintId" type="hidden" value="{{ComplaintId}}">
+                    <input data-val="true" data-val-number="Wartość dla pola OrderItemId musi być liczbą"  id="OrderItemId" name="OrderItemId" type="hidden" value="{{OrderItemId}}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="CauseOfComplaint">Powód reklamacji</label>
+                        <div class="col-sm-4">                            
+                            <textarea class="form-control" data-val="true" cols="20" data-val-required="Pole 'Powód reklamacji' jest wymagane" id="CauseOfComplaint" name="CauseOfComplaint" rows="2">{{CauseOfComplaint}}</textarea>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="CauseOfComplaint" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>            
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="Quantity">Ilość</label>
+                        <div class="col-sm-4">                            
+                            <input class="form-control" data-val="true" data-val-number="Wartość dla pola Ilość musi być liczbą" data-val-range="Pole Ilość musi być z zakresu od 1 do 2147483647."
+                                    data-val-range-max="2147483647" data-val-range-min="1" data-val-required="Pole 'Ilość' jest wymagane" id="Quantity" name="Quantity" value="{{Quantity}}" type="text">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Quantity" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>                        
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-2">
+                            <a class="btn-default btn" href="/Reklamacja/{{ComplaintId}}"><i class="fa fa-arrow-left"></i> Powrót</a>
+                            <button class="btn-primary btn" type="submit">Zapisz</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>       
+    </div>
+</div>

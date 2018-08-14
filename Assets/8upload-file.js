@@ -1,6 +1,7 @@
 ﻿; (function ($, window, document, undefined) {
     var pluginName = 'fileUploader',
-        defaults = {            
+        defaults = {
+            getFilePath: '/File/Get/',
         };
     function FileUploader(element, options) {
         this.element = element;
@@ -86,7 +87,7 @@
                                     var liProto = instance.$element.find('.prototype-element');                                    
                                     var aProto = liProto.find('a');                                     
                                     info.response = JSON.parse(info.response);
-                                    aProto[0].setAttribute('data-url', '/DocumentFile/GetFile/' + info.response.fileId),
+                                    aProto[0].setAttribute('data-url', instance.options.getFilePath  + info.response.fileId),
                                     aProto.html('<i class="fa ' + info.response.fileIcon + '"></i> ' + info.response.fileName);
                                     var spanProto = liProto.find('span');
                                     spanProto.html(info.response.fileSize + ' KB');                                    
@@ -110,7 +111,8 @@
     };
     FileUploader.prototype.getPostParamValues = function () {
         var postParams = {
-            "TaskId": this.$element.data('taskid')
+            "ObjectId": this.$element.data('objectid'),
+            "ObjectType": this.$element.data('objecttype')
         }
         return postParams;
     }

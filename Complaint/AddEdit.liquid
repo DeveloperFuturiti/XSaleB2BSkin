@@ -1,0 +1,166 @@
+﻿<div class="wrapper wrapper-content">
+    <div class="col-md-12">
+        <div class="ibox">
+            <div class="ibox-title"><h5>{% if  ActionType == 1 %}Dodaj{% else %}Edytuj{% endif %}</h5></div>
+            <div class="ibox-content">
+                <form action="/Complaint/AddEdit" class="form-horizontal" method="post" novalidate="novalidate">
+                    <div class="form-group">
+                    </div>
+                    <input data-val="true" id="ActionType" name="ActionType" type="hidden" value="{{ActionType}}">
+                    <input data-val="true" data-val-number="Wartość dla pola Id musi być liczbą" data-val-required="Pole Id jest wymagane." id="Id" name="Id" type="hidden" value="{{Id}}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="FirstName">Id</label>
+                        <div class="col-sm-4">
+                            <input class="form-control"  id="Complaint-Id" name="Complaint-Id" type="text" value="{{Id}}" readonly="readonly">                          
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="FirstName">Numer dokumentu</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" {% if DisableEdit %} readonly="readonly" {% endif %} data-val="true" data-val-required="Pole 'Numer dokumentu' jest wymagane" id="DocumentNumber" name="DocumentNumber" type="text" value="{{DocumentNumber}}">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="DocumentNumber" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="FirstName">Data wystawienia</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" disabled="disabled" id="CreationDate" name="CreationDate" type="text" value="{{CreationDate}}">                            
+                        </div>
+                    </div>
+                    <div class="form-group PageId">
+                        <label class="col-sm-2 control-label" for="OrderId">Zamówienie</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" {% if  ActionType == 2 %} readonly="readonly"  {% endif %} data-val="true" data-val-number="Wartość dla pola Zamówienie musi być liczbą" id="OrderId" name="OrderId">
+                                {% for listItem in OrderList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                            {% if  ActionType == 1 %} <small>Wyszukaj podając Id zamówienia lub Wewnętrzny nr. zamówienia</small> {% endif %}                            
+                            <span class="field-validation-valid text-danger" data-valmsg-for="OrderId" data-valmsg-replace="true"></span>
+                        </div>                        
+                    </div>
+                    {% if  ActionType == 1 %}
+                    <script type="text/javascript"> $(document).ready(function () { Select2Extension.initSelect2List('#OrderId', '/Order/Autocomplete', 'Wybierz'); }); </script>
+                    {% endif %}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ComplaintType">Typ reklamacji</label>
+                        <div class="col-sm-4">
+                            <select title="Typ reklamacji" name="ComplaintType" {% if DisableEdit %} readonly="readonly" {% endif %}  class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Typ reklamacji musi być liczbą" placeholder="Wybierz z listy">                                
+                                {% for listItem in ComplaintTypeList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>                            
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ComplaintRequest">Żądanie</label>
+                        <div class="col-sm-4">
+                            <select title="Żądanie" name="ComplaintRequest" {% if DisableEdit %} readonly="readonly" {% endif %}  class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Żądanie musi być liczbą" placeholder="Wybierz z listy">
+                                {% for listItem in ComplaintRequestList %}
+                                    <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>     
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ComplaintDecision">Decyzja</label>
+                        <div class="col-sm-4">
+                            <select title="Decyzja" disabled="disabled" name="ComplaintDecision" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Decyzja musi być liczbą" placeholder="Wybierz z listy">
+                                <option {% if ComplaintDecision == null %} selected="selected" {% endif %} value="">Brak decyzji</option>
+                                {% for listItem in ComplaintDecisionList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="FirstName">Termin rozpatrzenia</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" disabled="disabled" id="ConsiderationDate" name="ConsiderationDate" type="text" value="{{ConsiderationDate}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="ComplaintStatus">Status reklamacji</label>
+                        <div class="col-sm-4">
+                            <select title="Status reklamacji" disabled="disabled" name="ComplaintStatus" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Status reklamacji musi być liczbą" placeholder="Wybierz z listy">                                
+                                {% for listItem in ComplaintStatusList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label class="col-sm-2 control-label " for="FirstName">Opis</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-required="Pole 'Numer dokumentu' jest wymagane" id="DocumentNumber" name="DocumentNumber" type="text" value="{{DocumentNumber}}">
+                            <textarea class="form-control" {% if DisableEdit %} readonly="readonly" {% endif %}  data-val="true" cols="20"  id="Description" name="Description" rows="2">{{Description}}</textarea>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>-->        
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-2">
+                            <a class="btn-default btn" href="/Reklamacje"><i class="fa fa-arrow-left"></i> Powrót do listy reklamacji</a>
+                            {% if DisableEdit == false %} 
+                                <button class="btn-primary btn" type="submit">Zapisz</button>
+                            {% endif %}                            
+                        </div>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+        {% if  ActionType == 2 %}
+            <div class="ibox  border-left-right border-bottom">
+                <div class="ibox-title">
+                    <h5>Pozycje reklamacji</h5>
+                </div>
+                <div class="ibox-content">
+                    {% if DisableEdit == false %}
+                    <a href="/ZgloszenieReklamacji/{{OrderId}}/{{Id}}" class="btn btn-sm btn-primary pull-right m-t-none"><i class="fa fa fa-plus"></i> Dodaj pozycję reklamacji</a>
+                    {% endif %}
+                    {{ComplaintPostitionsGrid}}
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#table-complaint-list_wrapper th").attr("role", "columnheader");
+                });
+                $(document).on('init.dt', function () {
+                    $("#table-complaint-list_wrapper tbody tr").removeAttr("role");
+                });
+            </script>
+            <div class="panel panel-default  file-uploader file-uploader-complaint" data-url="/Complaint/UploadAttachment" data-objectid="{{Id}}" data-objecttype="1">
+                <div class="panel-heading">
+                    Załączniki
+                </div>
+                <div class="panel-body p-b-sm ">
+                    <ul class="list-unstyled file-list m-b-none">
+                        {% for Attachemnet in Attachemnets %}
+                        <li>
+                            <a class="download-file" data-url="/Complaint/GetAttachment/{{Attachemnet.Id}}" href="javascript:void(0);"><i class="fa {{Attachemnet.Icon}}"></i> {{Attachemnet.File_name}}</a>
+                            <span class="size">{{Attachemnet.Length}} KB</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <ul style="display:none">
+                        <li class="prototype-element">
+                            <a class="download-file" data-url="" href="javascript:void(0);"><i class="fa "></i> </a>
+                            <span class="size"> KB</span>
+                        </li>
+                    </ul>
+                    <div class="progress progress-striped active m-b-xxs" style="display:none;">
+                        <div style="width:1%;" class="progress-bar progress-bar-info"></div>
+                    </div>
+                    <div class="uploader-area">
+                        <p class="m-md"><i class="fa fa-upload "></i> Kliknij lub przeciągnij pliki tutaj</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<script type="text/javascript">
+    $('.file-uploader-complaint').fileUploader({
+        getFilePath: '/Complaint/GetAttachment/'
+    });
+</script>

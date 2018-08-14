@@ -10544,6 +10544,12 @@ body.md-skin {
     .menu-block p,.menu-block a,.menu-block span,.menu-block label{
         margin:0 5px 0 0;
     }
+#table-user-list_previous a,
+#table-user-list_next a,
+#table-datatable-order-list_previous a,
+#table-datatable-order-list_next {
+    color:#767676;
+}
 
     /* Toastr custom style */
 /*#toast-container > .toast {

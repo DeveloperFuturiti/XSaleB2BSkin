@@ -117,7 +117,7 @@
             var url = $(this).data('url');
             document.getElementById('downloadDocumentIframe').src = url;
         });
-        $('.file-uploader').fileUploader({
+        $('.init-file-uploader').fileUploader({
         });
         $('#cart-navbar').cart({});
         setTimeout(function () {
@@ -126,7 +126,7 @@
                 wrap: 'letter'
             }, 0);
         });
-        $('#article-search').search({});
+        $('#article-search').search({});        
     });
 </script>
 
