@@ -10,10 +10,9 @@
             </div>-->
         </div>
         <div class="">
-            <!--<form id="article-search-form" action="/Article/Index" method="post" novalidate="novalidate">-->
-            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="width:650px; display: inline-table;">
+            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:25px; margin-left:-5px; {% else %} width:650px; {% endif %} display: inline-table;">
                 <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukan¹ frazê">
-                <ul class="result-box dropdown-menu dropdown-alerts" style="display:none; position:absolute;">
+                <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:25px; {% endif %}display:none; position:absolute;">
                     <li class="preloader" style="display:none;">
                         <div class="sk-spinner sk-spinner-wave">
                             <div class="sk-rect1"></div>

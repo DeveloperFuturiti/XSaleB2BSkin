@@ -188,7 +188,9 @@
                     <div class="ibox float-e-margins border-left-right border-bottom m-b-sm">
                         <div class="ibox-content">
                             <div class="m-b-n-sm">
-                                <button class="btn btn-primary pull-right finalize-order"><i class="fa fa fa-check"></i> Zamawiam z obowiązkiem zapłaty</button>
+                                {% if ShowFinalizeOrder %}
+                                    <button class="btn btn-primary pull-right finalize-order"><i class="fa fa fa-check"></i> Zamawiam z obowiązkiem zapłaty</button>
+                                {% endif %}                                
                                 <div class="btn-group">
                                     <a href="/Towary" class="btn btn-white "><i class="fa fa-arrow-left"></i> Wróć do zakupów</a>
                                     <!--<a href="javascript:void(0);" class="btn btn-primary "><i class="fa fa-paper-plane"></i> Wyślij "do akceptacji"</a>-->
