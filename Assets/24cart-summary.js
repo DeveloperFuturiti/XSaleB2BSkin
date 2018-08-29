@@ -58,11 +58,149 @@
                 submitWithMessage();
             }                                                            
         });
+        instance.$element.on('click', '.send-to-accept', function (e) {
+            var $this = $(e.currentTarget);
+            var id = $this.closest('.cart-details').data('id');            
+            let submitWithMessage = function () {
+                if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+                    var result = instance.sendToAccept();
+                    if (result.Success) {
+                        instance.options.finalized = true;
+                        swal({
+                            title: "",
+                            text: 'Zamówienie zostało wysłane',
+                            timer: 3 * 1000,
+                            showConfirmButton: true,
+                            type: "success",
+                            html: true,                        
+                            //showCancelButton: true,
+                            //cancelButtonText: 'OK'
+                        }, function () {
+                            location = '/';
+                        });                    
+                    } else {
+                        console.log(result.Data.Errors);
+                        SAlert.Error(result.Data.ErrorMessage);
+                    }
+                }
+            };                                                
+            submitWithMessage();                                   
+        });
         window.onbeforeunload = function () {
             if (!instance.submitAddressDataForm.apply(instance, [false, false])) {
                 return 'Wprowadzone dane wysyłki mogą nie zostać zapisane. Sprawdź poprawność danych.';
             }
         };
+        var cancelCart = instance.$element.data('cancel');
+        if (cancelCart) {
+            instance.confirmCancel();
+        }
+        var deleteCart = instance.$element.data('delete');
+        if (deleteCart) {
+            instance.confirmDelete();
+        }
+    };
+    CartSummary.prototype.confirmCancel = function () {
+        var instance = this;
+        var $this = $(instance);
+        var id = $this.closest('.cart-details').data('id');
+        let submitWithMessage = function () {
+            if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+                var result = instance.cancelCart();
+                if (result.Success) {
+                    instance.options.finalized = true;
+                    swal({
+                        title: "",
+                        text: 'Koszyk został anulowany',
+                        timer: 3 * 1000,
+                        showConfirmButton: true,
+                        type: "success",
+                        html: true,
+                        //showCancelButton: true,
+                        //cancelButtonText: 'OK'
+                    }, function () {
+                        location = '/';
+                    });
+                } else {
+                    console.log(result.Data.Errors);
+                    SAlert.Error(result.Data.ErrorMessage);
+                }
+            }
+        };
+        SAlert.Confirm({
+            content: 'Czy na pewno chcesz anulować koszyk?',
+            handler: function () {
+                submitWithMessage();
+            }
+        }, false);
+    };
+    CartSummary.prototype.cancelCart = function () {
+        var instance = this;
+        var id = instance.$element.data('id');
+        var result = $.ajax({
+            type: 'POST',
+            url: '/Cart/Cancel',
+            cache: false,
+            data: { id: id },
+            async: false,
+            success: function (data) {
+            }
+        });
+        if (result == null && result.responseJSON == null)
+            return { Success: false };
+        else
+            return result.responseJSON;
+    };
+    CartSummary.prototype.confirmDelete = function () {
+        var instance = this;
+        var $this = $(instance);
+        var id = $this.closest('.cart-details').data('id');
+        let submitWithMessage = function () {
+            if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+                var result = instance.deleteCart();
+                if (result.Success) {
+                    instance.options.finalized = true;
+                    swal({
+                        title: "",
+                        text: 'Koszyk został usunięty',
+                        timer: 3 * 1000,
+                        showConfirmButton: true,
+                        type: "success",
+                        html: true,
+                        //showCancelButton: true,
+                        //cancelButtonText: 'OK'
+                    }, function () {
+                        location = '/';
+                    });
+                } else {
+                    console.log(result.Data.Errors);
+                    SAlert.Warning(result.Data.ErrorMessage);
+                }
+            }
+        };
+        SAlert.Confirm({
+            content: 'Czy na pewno chcesz usunąć koszyk?',
+            handler: function () {
+                submitWithMessage();
+            }
+        }, false);
+    };
+    CartSummary.prototype.deleteCart = function () {
+        var instance = this;
+        var id = instance.$element.data('id');
+        var result = $.ajax({
+            type: 'POST',
+            url: '/Cart/DeleteCart',
+            cache: false,
+            data: { id: id },
+            async: false,
+            success: function (data) {
+            }
+        });
+        if (result == null && result.responseJSON == null)
+            return { Success: false };
+        else
+            return result.responseJSON;
     };
     CartSummary.prototype.finalizeOrder = function () {
         var instance = this;
@@ -80,6 +218,23 @@
             return { Success: false };
         else 
             return result.responseJSON;                        
+    };
+    CartSummary.prototype.sendToAccept = function () {
+        var instance = this;
+        var id = instance.$element.data('id');
+        var result = $.ajax({
+            type: 'POST',
+            url: '/Cart/SendToAccept',
+            cache: false,
+            data: { id: id },
+            async: false,
+            success: function (data) {
+            }
+        });
+        if (result == null && result.responseJSON == null)
+            return { Success: false };
+        else
+            return result.responseJSON;
     };
     CartSummary.prototype.checkLimitWarning = function () {
         var instance = this;

@@ -58,9 +58,9 @@
                             <div>
                                 <div class="btn-group pull-right">
                                     <button class="btn btn-white " title="Dostępne">{% if article.Quantity == null %} 0 {% else %} {{Article.Quantity}} {% endif %} </button>
-                                    <button class="btn btn-white  order-quantity-container">
+                                    <div class="btn btn-white  order-quantity-container">
                                         <input class="quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość">
-                                    </button>
+                                    </div>
                                     <button class="btn btn-primary add-to-cart" data-articleid="{{Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                 <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
                             </div>
                         </div>-->
-                        <hr>
+                        <!--<hr>
                         <h3 class="text-center">Warianty</h3>
                         <div class="slick-variants m-r-md m-l-md" style="display:none">
                             {% for block in VariantBlocks %}
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             {% endfor %}
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="row">
@@ -195,13 +195,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <hr>
                     <h3>Opis promocji</h3>
                     <div class="small text-muted description">
                         promocja
                     </div>
-                </div>
+                </div>-->
             </div>
             <!--<div class="ibox-footer">
                 <span class="pull-right">

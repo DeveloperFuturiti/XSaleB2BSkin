@@ -76,7 +76,7 @@
             if (!instance.submitAdditionalDataForm.apply(instance, [false, false])) {
                 return 'Błąd podczas zapisu danych zamówienia';
             }            
-        };
+        };        
     };
     CartDetails.prototype.deleteItem = function (id, $url) {
         var instance = this;

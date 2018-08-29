@@ -1,5 +1,5 @@
 
-<div id="cart-summary" class="wrapper wrapper-content cart-summary" data-id="{{Id}}">
+<div id="cart-summary" class="wrapper wrapper-content cart-summary" data-id="{{Id}}" data-delete="{{Delete}}" data-cancel="{{Cancel}}">
     <div class="row m-l-xs m-r-xxs ">
         <div class="col-lg-12">
             <div class="ibox  border-left-right border-bottom m-b-sm">
@@ -85,18 +85,24 @@
                                     <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="row m-r-xxs m-l-none">
-                                    <div class="col-xs-6 col-md-6">
+                                    <div class="col-xs-4 col-md-4">
                                         <div class="form-group m-b-xs">
                                             <input name="MobilePhone" value="{{ShipmentAddress.Mobile_phone}}" title="Nr. Tel. Komórkowego" placeholder="Nr. Tel. Komórkowego" class="form-control valid" data-val="true" data-val-length="Nr. Tel. Komórkowego musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="MobilePhone" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-md-6 pull-right">
+                                    <div class="col-xs-4 col-md-4 pull-right">
+                                        <div class="form-group m-b-xs ">
+                                            <input name="Email" value="{{ShipmentAddress.Email}}" title="E-mail" placeholder="E-mail" class="form-control valid" data-val="true" data-val-length="E-mail musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" type="text">
+                                            <span class="field-validation-valid text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 col-md-4 pull-right">
                                         <div class="form-group m-b-xs ">
                                             <input name="Phone" value="{{ShipmentAddress.Phone}}" title="Nr. Telefonu" placeholder="Nr. Telefonu" class="form-control valid" data-val="true" data-val-length="Nr. Telefonu musi być ciągiem o maksymalnej długości 100." data-val-length-max="100" aria-required="false" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="Phone" data-valmsg-replace="true"></span>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
                                 <div class="row m-r-xxs m-l-none">
                                     <div class="col-xs-8 col-md-8">
@@ -107,7 +113,7 @@
                                     </div>
                                     <div class="col-xs-4 col-md-4 pull-right">
                                         <div class="form-group m-b-xs ">
-                                            <input name="StreetNumber" value="{{ShipmentAddress.Street_number}}" title="Numer budynku/lokalu" placeholder="Nr. budynku/lokalu" class="form-control valid" data-val="true" data-val-length="Pole Numer budynku i lokalu musi być ciągiem o maksymalnej długości 20." data-val-length-max="20" data-val-required="Pole Numer budynku i lokalu jest wymagane." aria-required="true" aria-invalid="false" type="text">
+                                            <input name="StreetNumber" value="{{ShipmentAddress.Street_number}}" title="Numer budynku/lokalu" placeholder="Nr. budynku/lokalu" class="form-control valid" data-val="true" data-val-length="Pole Numer budynku i lokalu musi być ciągiem o maksymalnej długości 20." data-val-length-max="20" aria-required="true" aria-invalid="false" type="text">
                                             <span class="field-validation-valid text-danger" data-valmsg-for="StreetNumber" data-valmsg-replace="true"></span>
                                         </div>
                                     </div>
@@ -193,7 +199,9 @@
                                 {% endif %}                                
                                 <div class="btn-group">
                                     <a href="/Towary" class="btn btn-white "><i class="fa fa-arrow-left"></i> Wróć do zakupów</a>
-                                    <!--<a href="javascript:void(0);" class="btn btn-primary "><i class="fa fa-paper-plane"></i> Wyślij "do akceptacji"</a>-->
+                                {% if ShowSendToAccept %}
+                                    <a href="javascript:void(0);" class="btn btn-primary send-to-accept"><i class="fa fa-paper-plane"></i> Wyślij "do akceptacji"</a>
+                                {% endif %}  
                                 </div>
                             </div>
                         </div>

@@ -1,18 +1,18 @@
 <body class="pace-done" style="">
     @BlockArea("Header")
-    <nav class="navbar navbar-static-top border-bottom row" style="margin-bottom: 0">
+    <nav class="navbar navbar-static-top border-bottom" style="margin-bottom: 0">
         <div class="">
             <div class="navbar-header" role="navigation">
-                <a class="im" href="/" aria-hidden="true"> <img style="height: 100%; width: 100%; display: block;" class="img-fluid m-l-md  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{Company.Image_base64}}" {% endif %} style="height: 100%; width: 100%; display: block;" alt="Logo"> </a>
+                <a class="im" href="/" aria-hidden="true"> <img style="height: 100%; width: 100%; display: block;" class="img-fluid  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{Company.Image_base64}}" {% endif %} style="height: 100%; width: 100%; display: block;" alt="Logo"> </a>
             </div>
             <!--<div class="navbar-header">
                 <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
             </div>-->
         </div>
         <div class="">
-            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:25px; margin-left:-5px; {% else %} width:650px; {% endif %} display: inline-table;">
+            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:60px; margin-left:-30px; {% else %} width:650px; {% endif %} display: inline-table;">
                 <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukan¹ frazê">
-                <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:25px; {% endif %}display:none; position:absolute;">
+                <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:60px; {% endif %}display:none; position:absolute;">
                     <li class="preloader" style="display:none;">
                         <div class="sk-spinner sk-spinner-wave">
                             <div class="sk-rect1"></div>
