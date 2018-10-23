@@ -154,6 +154,11 @@
                     } else {
                         $field.closest('.shoping-cart-table').find('.available-quantity-alert').hide();
                     }
+                    if (data.Data.articleMinimalQuantity > data.Data.orderedQuentity) {
+                        $field.closest('.shoping-cart-table').find('.minimal-quantity-alert').show();
+                    } else {
+                        $field.closest('.shoping-cart-table').find('.minimal-quantity-alert').hide();
+                    }
                     $field.closest('.shoping-cart-table').find('.total-price').text(data.Data.totalPrice != null ? data.Data.totalPrice : '');
                     instance.references.$cartSummary.trigger('reload');
                 } else {

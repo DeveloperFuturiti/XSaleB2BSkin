@@ -80,7 +80,7 @@
                         });                    
                     } else {
                         console.log(result.Data.Errors);
-                        SAlert.Error(result.Data.ErrorMessage);
+                        SAlert.Warning(result.Data.ErrorMessage);
                     }
                 }
             };                                                

@@ -22,7 +22,14 @@
                             <tr>
                                 <!--{{article.Id}}-->
                                 <td class="text-center">{{article.Order_item_id}}</td>
-                                <td>{{article.Name}}</td>
+                                <td>
+                                    <div>
+                                        {{article.Name}}
+                                    </div>
+                                    <div>
+                                        <span class="help-block m-b-none text-danger" style="{% if article.show_minimal_quantity_alert == false %}display:none;{% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalna ilość tego artykułu to: {{article.minimal_quantity}} szt.</span>
+                                    </div>
+                                </td>
                                 <td class="text-center">{{article.Ordered_quantity}} szt.</td>
                                 <td class="text-center"><span class="label label-primary price-label">{{article.Total_price}} {{CurrencyTypeName}}</span></td>
                             </tr>
@@ -30,7 +37,7 @@
                         </tbody>
                     </table>                  
                 </div>
-                <div class="ibox-content ibox-heading" style="height:150px;">
+                <div class="ibox-content ibox-heading" style="height:160px;">
                     <div class="pull-right " style="text-align:right">
                         <label>Netto:</label>
                         <span> {{NetPrice}} {{CurrencyTypeName}}</span>
@@ -49,6 +56,7 @@
                         <h3 class="text-navy">
                            Razem netto: {{TotalAmount}} {{CurrencyTypeName}}
                         </h3>
+                        <span class="help-block m-b-none text-danger" style="{% if ShowMinimalAmountAlert == false %}display:none;{% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalana wartość zamówienia to: {{MinimalAmount}} {{CurrencyTypeName}}</span>
                     </div>
                     <label> Forma dostawy:</label>
                     <span> {{DeliveryMethod}}</span>

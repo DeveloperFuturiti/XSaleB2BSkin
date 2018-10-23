@@ -10227,10 +10227,6 @@ body.md-skin {
         min-height: 100px;
     }
 
-    .nav.navbar-top-links li.dropdown {
-        display: none;
-    }
-
     .ibox-tools {
         float: none;
         text-align: left;
@@ -10503,6 +10499,7 @@ body.md-skin {
 }
 .product-detail .dl-horizontal dd {
     margin-left: 380px;
+    width:130px;
 }
 .table-summary .price-label {
     font-size:12px;
@@ -10549,6 +10546,52 @@ body.md-skin {
 #table-datatable-order-list_previous a,
 #table-datatable-order-list_next {
     color:#767676;
+}
+@media (min-width: 769px){
+    .navbar-top-links li.small-menu-list{
+        display:none;
+    }
+}
+@media (max-width: 768px){
+    .navbar-top-links li{
+        display:none;
+    }
+}
+@media (max-width: 768px){
+    .navbar-top-links li.small-menu-list{
+        display:inline-block;
+    }
+}
+ul.dropdown-menu ul li.second-menu-level .link-block a{
+    padding-left:0px;
+}
+ul.dropdown-menu ul li.second-menu-level:hover{
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #428bca;
+    border-radius:3px;
+    margin-left:4px;
+    margin-right:4px;
+}
+.fusion-toggle-icon-line{
+    width: 30px;
+    height: 2px;
+    background-color: #767676;
+    margin: auto;
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+.fusion-flyout-menu-toggle:hover .fusion-toggle-icon-line{
+    background-color: #434343;
+}
+.panel-menu{
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 40px;
+    white-space:nowrap;
+}
+.panel-menu .navbar-top-links li:last-child{
+    margin-right: 0px;
 }
 
     /* Toastr custom style */

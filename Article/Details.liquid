@@ -8,7 +8,7 @@
                             {% for imageId in Article.Image_ids %}
                             <div>
                                 <div class="product-image-box">
-                                    <img class="image" alt="Zdjęcie" {% if imageId == null %} src="/Content/Assets/article.png" {% else %} src="/Article/GetImageBinary/{{imageId}}" {% endif %}>
+                                    <img class="image" alt="Zdjęcie" {% if imageId == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="/Article/GetImageBinary/{{imageId}}" {% endif %}>
                                 </div>
                             </div>
                             {% endfor %}
@@ -20,21 +20,26 @@
                                 <h3 class="font-bold m-b-xs">
                                     {{Article.Name}}
                                 </h3>
+                                <small class="text-muted">{{article.Code}}</small>
                             </div>
                             <div id="rating-widget" class="pull-right rating-widget" data-offerid="{{Article.Offer_id}}" data-loadratingurl="/Article/LoadOfferRating" data-rateofferurl="/Article/RateOffer">
                                 <dl class="dl-horizontal small m-t-none small">
-                                    <dt>Ocena:</dt>
-                                    <dd class="stars-inactive">
-                                        <span style="font-size:16px;">                                            
-                                            <i class="fa fa-star-o" data-starnumber="1"></i>
-                                            <i class="fa fa-star-o" data-starnumber="2"></i>
-                                            <i class="fa fa-star-o" data-starnumber="3"></i>
-                                            <i class="fa fa-star-o" data-starnumber="4"></i> <!--fa fa-star-half-o-->
-                                            <i class="fa fa-star-o" data-starnumber="5"></i>
-                                            <span class="average">0 (0)</span> 
-                                        </span>
-                                    </dd>
-                                    <dt>Moja ocena:</dt>
+                                        <dt>
+                                            <span style="float:right">Ocena:</span>
+                                        </dt>
+                                        <dd class="stars-inactive">
+                                            <span style="font-size:16px;">
+                                                <i class="fa fa-star-o" data-starnumber="1"></i>
+                                                <i class="fa fa-star-o" data-starnumber="2"></i>
+                                                <i class="fa fa-star-o" data-starnumber="3"></i>
+                                                <i class="fa fa-star-o" data-starnumber="4"></i> <!--fa fa-star-half-o-->
+                                                <i class="fa fa-star-o" data-starnumber="5"></i>
+                                                <span class="average">0 (0)</span>
+                                            </span>
+                                        </dd>
+                                    <dt>
+                                        <span style="float:right">Moja ocena:</span>
+                                    </dt>
                                     <dd class="stars-interactive">
                                         <span style="font-size:16px;">
                                             <i class="fa fa-star-o" data-starnumber="1"></i>
@@ -50,7 +55,6 @@
                                 $('#rating-widget').rateWidget();
                             </script>
                         </div>
-                        <small class="text-muted">{{article.Code}}</small>
                         <br />
                         <small class="font-bold">{{Article.Variant}}</small>
                         <div class="m-t-md">
@@ -62,6 +66,9 @@
                                         <input class="quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość">
                                     </div>
                                     <button class="btn btn-primary add-to-cart" data-articleid="{{Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
+                                    {% if Article.Quantity == 0 %}
+                                    <button class="btn btn-warning add-notification" onclick="ArticleNotification({{Article.Id}})" title="Powiadom o dostępności"><i class="fa fa-comment"></i></button>
+                                    {% endif %}
                                 </div>
                             </div>
                             <h1 class="product-main-price">

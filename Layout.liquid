@@ -9,94 +9,140 @@
                 <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
             </div>-->
         </div>
-        <div class="">
-            <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:60px; margin-left:-30px; {% else %} width:650px; {% endif %} display: inline-table;">
-                <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukan¹ frazê">
-                <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:60px; {% endif %}display:none; position:absolute;">
-                    <li class="preloader" style="display:none;">
-                        <div class="sk-spinner sk-spinner-wave">
-                            <div class="sk-rect1"></div>
-                            <div class="sk-rect2"></div>
-                            <div class="sk-rect3"></div>
-                            <div class="sk-rect4"></div>
-                            <div class="sk-rect5"></div>
-                        </div>
-                    </li>
-                </ul>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn btn-primary search-button" title="Szukaj"> <i class="fa fa-search"></i></button>
-                </span>
-            </div>
-            @BlockArea("Menu1")
-            <ul class="m-t-md nav navbar-top-links navbar-right">
-                {% for menuItem in MenuItems %}
-                {% if  menuItem.Use_reference == true %}
-                <!--Odnoœnik-->
-                <li>
-                    {% if  menuItem.Use_link == true %}
-                    <a href="{{menuItem.Link}}">
+        <div class="" style="margin-bottom:20px;">
+            <div class="row">
+                <!--<div class="col-lg-5">-->
+                    <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:60px; margin-left:-30px; {% else %} width:650px; {% endif %} display: inline-table;">
+                        <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukan¹ frazê">
+                        <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:60px; {% endif %}display:none; position:absolute;">
+                            <li class="preloader" style="display:none;">
+                                <div class="sk-spinner sk-spinner-wave">
+                                    <div class="sk-rect1"></div>
+                                    <div class="sk-rect2"></div>
+                                    <div class="sk-rect3"></div>
+                                    <div class="sk-rect4"></div>
+                                    <div class="sk-rect5"></div>
+                                </div>
+                            </li>
+                        </ul>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn btn-primary search-button" title="Szukaj"> <i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                <!--</div>-->
+                <div class="panel-menu">
+                    @BlockArea("Menu1")
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="small-menu-list dropdown pull-left">
+                            <a class="fusion-flyout-menu-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
+                                <div style="width:100px">
+                                    <div class="fusion-toggle-icon-line"></div>
+                                    <div class="fusion-toggle-icon-line"></div>
+                                    <div class="fusion-toggle-icon-line"></div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for menuItem in MenuItems %}
+                                {% if  menuItem.Use_reference == true %}
+                                <li>
+                                    {% if  menuItem.Use_link == true %}
+                                    <a href="{{menuItem.Link}}">
+                                        {% else %}
+                                        <a href="/{{menuItem.Link}}">
+                                            {% endif %}
+                                            {{menuItem.Name}}
+                                        </a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a>
+                                        {{menuItem.Name}}
+                                    </a>
+                                    <ul>
+                                        {% for subItems in menuItem.Menu_items %}
+                                        <li class="second-menu-level">
+                                            <div class="link-block">
+                                                <a href="../{{subItems.Link}}">
+                                                    {{subItems.Name}}
+                                                </a>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% for menuItem in MenuItems %}
+                        {% if  menuItem.Use_reference == true %}
+                        <li>
+                            {% if  menuItem.Use_link == true %}
+                            <a href="{{menuItem.Link}}">
+                                {% else %}
+                                <a href="/{{menuItem.Link}}">
+                                    {% endif %}
+                                    {{menuItem.Name}}
+                                </a>
+                        </li>
                         {% else %}
-                        <a href="/{{menuItem.Link}}">
-                            {% endif %}
-                            {{menuItem.Name}}
-                        </a>
-                </li>
-                {% else %}
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
-                        <i class="fa fa-caret-down m-r-xxs" style="font-size:12px;"></i>      {{menuItem.Name}}
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        {% for subItems in menuItem.Menu_items %}
-                        <li>
-                            <div class="link-block">
-                                <a href="../{{subItems.Link}}">
-                                    <strong>{{subItems.Name}}</strong>
-                                </a>
-                            </div>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
+                                <i class="fa fa-caret-down m-r-xxs" style="font-size:12px;"></i>      {{menuItem.Name}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for subItems in menuItem.Menu_items %}
+                                <li>
+                                    <div class="link-block">
+                                        <a href="../{{subItems.Link}}">
+                                            <strong>{{subItems.Name}}</strong>
+                                        </a>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
-                {% endfor %}
-                <li id="cart-navbar" class="dropdown" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">                    
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
-                        <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li class="preloader" style="display:none;">
-                            <div class="sk-spinner sk-spinner-wave">
-                                <div class="sk-rect1"></div>
-                                <div class="sk-rect2"></div>
-                                <div class="sk-rect3"></div>
-                                <div class="sk-rect4"></div>
-                                <div class="sk-rect5"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a class="add-cart" href="javascript:void(0);">
-                                    <strong>Dodaj koszyk</strong>
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    
-                    <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
-                        {% if  UseLimits == true %}
-                        <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}}</strong></a>
                         {% endif %}
-                        <br />
-                        {{LogOutAntiForgery}}
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="no-padding"><i class="fa fa-sign-out fa-align-center "></i> Wyloguj</a>
-                    </form>
-                </li>
-            </ul>
-            @BlockArea("Menu2")
+                        {% endfor %}
+                        <li style="display:inline-block" class="pull-right">
+
+                            <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
+                                {% if  UseLimits == true %}
+                                <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}}</strong></a>
+                                {% endif %}
+                                <br />
+                                {{LogOutAntiForgery}}
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="no-padding"><i class="fa fa-sign-out fa-align-center "></i> Wyloguj</a>
+                            </form>
+                        </li>
+                        <li id="cart-navbar" class="dropdown pull-right" style="display:inline-block" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
+                                <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="preloader" style="display:none;">
+                                    <div class="sk-spinner sk-spinner-wave">
+                                        <div class="sk-rect1"></div>
+                                        <div class="sk-rect2"></div>
+                                        <div class="sk-rect3"></div>
+                                        <div class="sk-rect4"></div>
+                                        <div class="sk-rect5"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a class="add-cart" href="javascript:void(0);">
+                                            <strong>Dodaj koszyk</strong>
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    @BlockArea("Menu2")
+                </div>
+            </div>
         </div>
     </nav>
     <div id="wrapper" class="gray-bg" style="">        

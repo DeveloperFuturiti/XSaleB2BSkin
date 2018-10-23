@@ -35,7 +35,8 @@
                                         <div class="m-t-sm">
                                             <a href="javascript:void(0);" data-id="{{article.Order_item_id}}" class="text-muted remove-article"><i class="fa fa-trash"></i> Usuń pozycję</a>
                                         </div>
-                                        <span class="help-block m-b-none text-danger available-quantity-alert" style="{% if article.Show_available_quantity_alert == false %} display:none; {% endif %}">Wybrana ilość przekracza dostępny stan. Czas realizacji może wynieść 7 dni.</span>
+                                        <span class="help-block m-b-none text-danger available-quantity-alert" style="{% if article.Show_available_quantity_alert == false %} display:none; {% endif %}">Wybrana ilość przekracza dostępny stan. Czas realizacji może wynieść {{article.Delivety_time_in_days}} dni.</span>
+                                        <span class="help-block m-b-none text-danger minimal-quantity-alert" style="{% if article.Show_minimal_quantity_alert == false %} display:none; {% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalna ilość tego artykułu to: {{article.Minimal_quantity}} szt.</span>
                                     </td>
                                     <td style="min-width:90px;">
                                         <span>{{article.Price}} {{CurrencyTypeName}} netto</span>

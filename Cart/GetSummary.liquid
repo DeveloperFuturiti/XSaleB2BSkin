@@ -38,3 +38,8 @@
             <h2>{{TotalAmount}} {{CurrencyTypeName}} netto</h2>
         </div>
     </div>
+    <div class="row">
+    <div class="col-lg-12">
+        <span class="help-block m-b-none text-danger" style="{% if ShowMinimalAmountAlert == false %} display:none; {% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalna wartość zamówienia {{MinimalAmount}} {{CurrencyTypeName}}</span>
+    </div>
+</div>
