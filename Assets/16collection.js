@@ -77,6 +77,9 @@
             if (instance.options.filterSel!=null) {
                 serializedFilter = $(instance.options.filterSel).filterMenu().SerializeFilter();
             }
+            if (instance.options.favoredFilterSel != null) {
+                favoredFilterVal = $(instance.options.favoredFilterSel).favoredFilter().GetValue();
+            }
             $.ajax({
                 type: 'POST',
                 url: instance.references.getDataUrl,
@@ -89,7 +92,8 @@
                     ItemWidth: instance.references.itemWidth,
                     CategoryId: instance.options.selectedCategoryId,
                     Filters: serializedFilter.Filters,
-                    Search: instance.options.search
+                    Search: instance.options.search,
+                    FavoredFilter: favoredFilterVal
                 },
                 xhr: function () {  // Custom XMLHttpRequest
                     var myXhr = $.ajaxSettings.xhr();

@@ -39,35 +39,49 @@
                                         <span class="help-block m-b-none text-danger minimal-quantity-alert" style="{% if article.Show_minimal_quantity_alert == false %} display:none; {% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalna ilość tego artykułu to: {{article.Minimal_quantity}} szt.</span>
                                     </td>
                                     <td style="min-width:90px;">
-                                        <span>{{article.Price}} {{CurrencyTypeName}} netto</span>
+                                        <span>{{article.Pricedisplay}} {{CurrencyTypeName}} netto</span>
                                         <!--<s class="small text-muted">{{article.Stock_price}}</s>-->
                                     </td>
                                     <td>
                                         <div class="input-group">
                                             <div>
-                                                <input id="ordered-quantity-{{article.Order_item_id}}" data-id="{{article.Order_item_id}}" type="text" class="form-control ordered-quantity" placeholder="1" value="{{article.Ordered_quantity}}" style="width:70px;" title="ilość sztuk">
+                                                <input id="ordered-quantity-{{article.Order_item_id}}" data-id="{{article.Order_item_id}}" data-unit-rounding="{{article.Unitrounding}}" type="text" class="form-control ordered-quantity" placeholder="1" value="{{article.Ordered_quantity_to_display}}" style="width:70px;" title="ilość sztuk">
                                             </div>
                                             <script type="text/javascript">
+                                                getMin = function(unitRouding) {
+                                                    let min = ["0"]; 
+                                                    while (unitRouding) {
+                                                        if (min.indexOf(".") === -1) {
+                                                            min.push(".");
+                                                        }
+                                                        min.push("0");
+                                                        unitRouding--;
+                                                    }
+                                                    min[min.length - 1] = "1";
+                                                    return parseFloat(min.join(''));
+                                                } 
                                                 $('#ordered-quantity-{{article.Order_item_id}}').TouchSpin({
-                                                    min: 1,
+                                                    min: getMin({{article.Unitrounding}}),
                                                     max: 1000000,
-                                                    step: 1,
+                                                    step: getMin({{article.Unitrounding}}),
                                                     boostat: 5,
                                                     maxboostedstep: 10
-                                                    , verticalbuttons: true
+                                                    , verticalbuttons: true,
+                                                    decimals: {{article.Unitrounding}}
                                                 });
                                                 $(document).ready(function () {
                                                     $('.bootstrap-touchspin-up').attr("title", "dodaj");
                                                     $('.bootstrap-touchspin-down').attr("title", "odejmij");
                                                 });
                                             </script>
-                                            <span class="input-group-addon">z {{article.Quantity}}</span>
+                                            <span class="input-group-addon">z {{article.Quantitydisplay}}</span>
+                                            <span class="input-group-addon">{% if article.Unit != null %}{{article.Unit}}{% else %}szt.{% endif %}</span>
                                         </div>
                                     </td>
                                     <td style="min-width:100px;">
                                         <label>Łącznie</label>
                                         <br />
-                                        <span><label class="total-price">{{article.Total_price}}</label> <label>{{CurrencyTypeName}}</label> <label>netto</label></span>
+                                        <span><label class="total-price">{{article.Total_price_display}}</label> <label>{{CurrencyTypeName}}</label> <label>netto</label></span>
                                     </td>
                                 </tr>
                             </tbody>

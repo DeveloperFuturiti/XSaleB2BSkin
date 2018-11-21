@@ -59,7 +59,8 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#article-grid').collection({});
+        $('#favored-filter-container').favoredFilter({ articleGridSel: '#article-grid' });
+        $('#article-grid').collection({ favoredFilterSel: '#favored-filter-container' });
         //$('.slick_demo_1').slick({
         //    dots: true
         //});        

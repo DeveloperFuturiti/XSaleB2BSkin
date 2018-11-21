@@ -5,7 +5,7 @@
             <div class="ibox  border-left-right border-bottom m-b-sm">
                 <div class="ibox-title">
                     <span class="pull-right">(<strong class="order-items">{{OrderItems}}</strong>) pozycji</span>
-                    <h5>SZCZAGÓŁY ZAMÓWIENIA</h5>
+                    <h5>SZCZEGÓŁY ZAMÓWIENIA</h5>
                 </div>
                 <div class="cart-items-container ibox-content ">
                     <table class="table table-hover m-b-none table-summary">
@@ -13,7 +13,7 @@
                             <tr>
                                 <th style="width: 1%" class="text-center">Id.</th>
                                 <th>Artykuł</th>
-                                <th style="width: 4%" class="text-center">Ilość</th>
+                                <th style="width: 8%" class="text-center">Ilość</th>
                                 <th style="width: 15%" class="text-center">Cena netto</th>
                                 {% if ComplaintId != null%}
                                 <th style="width: 15%" class="text-center">Operacje</th>
@@ -26,8 +26,8 @@
                                 <!--{{article.Id}}-->
                                 <td class="text-center">{{article.Order_item_id}}</td>
                                 <td>{{article.Name}}</td>
-                                <td class="text-center">{{article.Ordered_quantity}} szt.</td>
-                                <td class="text-center"><span class="label label-primary price-label">{{article.Total_price}} {{CurrencyTypeName}} </span></td>
+                                <td class="text-center">{{article.Ordered_quantity_to_display}} {% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</td>
+                                <td class="text-center"><span class="label label-primary price-label">{{article.Total_price_display}} {{CurrencyTypeName}} </span></td>
                                 {% if ComplaintId != null and article.Show_add_to_complaint %}
                                 <td class="text-center"><a href="/NowaPozycjaReklamacji/{{article.Order_item_id}}/{{ComplaintId}}" class="label label-warning price-label"><i class="fa fa fa-plus"></i> Dodaj pozycję do reklamacji </a></td>
                                 {% endif %}
@@ -39,7 +39,7 @@
                 <div class="ibox-content ibox-heading" style="height:150px;">
                     <div class="pull-right " style="text-align:right">
                         <label>Netto:</label>
-                        <span> {{NetPrice}} {{CurrencyTypeName}} </span>
+                        <span> {{NetPriceDisplay}} {{CurrencyTypeName}} </span>
                         <br />
                         <!--<label>VAT:</label>
                         <span> {{VatAmount}} {{CurrencyTypeName}}</span>
@@ -53,7 +53,7 @@
                         <br />
                         <br />                                              
                         <h3 class="text-navy">
-                           Razem netto: {{TotalAmount}} {{CurrencyTypeName}}
+                           Razem netto: {{TotalAmountDisplay}} {{CurrencyTypeName}}
                         </h3>
                     </div>
                     <label> Forma dostawy:</label>

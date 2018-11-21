@@ -37,7 +37,8 @@
                     $categoryPreviewGrid.css('display', '').attr('id', 'category-preview-grid-' + categoryId);
                     $('#category-preview').empty().append($categoryPreviewGrid);
                     $('#category-preview-grid-' + categoryId).collection({ 
-                        preloaderPrototypeSel: '.grid-preloader-prototype', selectedCategoryId: categoryId
+                        preloaderPrototypeSel: '.grid-preloader-prototype', selectedCategoryId: categoryId,
+                        favoredFilterSel: '#favored-filter-container'
                     });
                 }
             }, 700);            

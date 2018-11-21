@@ -13,7 +13,7 @@
             <div class="row">
                 <!--<div class="col-lg-5">-->
                     <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:60px; margin-left:-30px; {% else %} width:650px; {% endif %} display: inline-table;">
-                        <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukan� fraz�">
+                        <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukaną frazę">
                         <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:60px; {% endif %}display:none; position:absolute;">
                             <li class="preloader" style="display:none;">
                                 <div class="sk-spinner sk-spinner-wave">
@@ -25,14 +25,21 @@
                                 </div>
                             </li>
                         </ul>
+                        
                         <span class="input-group-btn">
                             <button type="button" class="btn btn btn-primary search-button" title="Szukaj"> <i class="fa fa-search"></i></button>
-                        </span>
+                        </span>                        
                     </div>
                 <!--</div>-->
                 <div class="panel-menu">
                     @BlockArea("Menu1")
                     <ul class="nav navbar-top-links navbar-right">
+                        <li id="favored-filter-container" class="checkbox favored-filter {% if HideFavoredOffersFilter %} hidden {% endif %}" >
+                            <input type="checkbox" id="favored-filter" {% if FavoredOffersFilter %} checked="checked" {% endif %}>
+                            <label for="favored-filter" style="font-weight: 600;">
+                                Wyróżnione
+                            </label>
+                        </li>
                         <li class="small-menu-list dropdown pull-left">
                             <a class="fusion-flyout-menu-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
                                 <div style="width:100px">
@@ -119,7 +126,7 @@
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
                                 <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-alerts">
                                 <li class="preloader" style="display:none;">
                                     <div class="sk-spinner sk-spinner-wave">
                                         <div class="sk-rect1"></div>
@@ -171,7 +178,9 @@
                 wrap: 'letter'
             }, 0);
         });
-        $('#article-search').search({});        
+        $('#article-search').search({
+            favoredFilterSel: '#favored-filter-container'
+        });
     });
 </script>
 

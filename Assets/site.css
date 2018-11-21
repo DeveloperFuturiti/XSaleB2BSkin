@@ -146,6 +146,16 @@ h5 {
         font-weight: 600;
     }
 
+.nav.navbar-top-links li#favored-filter-container {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #767676;
+}
+
+    .nav.navbar-top-links li#favored-filter-container label {
+        font-weight: 600;
+    }
+
 .navbar-top-links .dropdown-menu li {
     display: block;
 }
@@ -6667,6 +6677,14 @@ table.shoping-cart-table {
     position: absolute;
     top: -32px;
     right: 0;
+}
+
+.product-favored {
+    font-size: 9px;
+    color: #eea357;
+    position: absolute;
+    top: -1px;
+    right: 25px;
 }
 
 .product-detail .ibox-content {

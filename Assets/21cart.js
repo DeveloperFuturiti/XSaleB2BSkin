@@ -23,6 +23,12 @@
             var $container = $this.closest('.add-to-cart-container');
             var $stock = $container.find('button.available-stock-state');
             var $quantity = $container.find('input.add-to-cart-quantity');
+            var maxPrecision = $this.data('unit-rounding');
+            var precisionValidationResult = validateMaxPrecisionInput($quantity.val(), maxPrecision);
+            if (!precisionValidationResult) {
+                swal("", "Maksymalna precyzja dla tej jednostki wynosi: " + maxPrecision + " miejsc po przecinku.", "warning");
+                return;
+            }
             $.ajax({
                 type: 'POST',
                 url: '/Cart/AddArticle',
@@ -89,6 +95,17 @@
         instance.$element.on('reload', function () {
             instance.reloadMainCart();
         });
+
+        validateMaxPrecisionInput = function (input, maxPrecision) {
+            if (!input) {
+                return true;
+            } else if (input.indexOf(",") == -1) {
+                return true;
+            } else {
+                let actualPrecision = input.split(",")[1].length;
+                return actualPrecision <= maxPrecision;
+            }
+        }
     };
     Cart.prototype.loadCartList = function () {
         var instance = this;

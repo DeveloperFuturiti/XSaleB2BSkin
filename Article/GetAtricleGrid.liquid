@@ -15,6 +15,11 @@
                     <!--<div class="select-check-container checkbox checkbox-primary">
                         <input class="select-check" data-val="true" id="IncludeRelizationTime" name="Compare" type="checkbox" value="{{article.Id}}">             
                     </div>-->
+                    {% if  article.Favored %}
+                    <label class="product-favored" title="Wyróżniony">
+                        <i class="fa fa-bookmark fa-3x"></i>
+                    </label>
+                    {% endif %}
                     <div class="select-check-container checkbox checkbox-primary checkbox-inline m-t-xxs">
                         <input type="checkbox" id="select-article-{{article.Id}}" value="{{article.Id}}" name="select-article-{{article.Id}}" aria-hidden="true">
                         <label for="select-article-{{article.Id}}">&nbsp;</label>
@@ -29,7 +34,7 @@
                             {% if  article.Price == null %}
                             -
                             {% else %}
-                            {{article.Price}} {{CurrencyTypeName}} netto
+                            {{article.Pricedisplay}} {{CurrencyTypeName}} netto
                             {% endif %}
                         </span>
                         <small class="text-muted">{{article.Code}}</small>
@@ -49,11 +54,15 @@
                         <div class="row m-t-xs">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right add-to-cart-container">
-                                    <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{% if article.Quantity == null %} 0 {% else %} {{article.Quantity}} {% endif %} </button>
+                                    <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{% if article.Quantitydisplay == null %} 0 {% else %} {{article.Quantitydisplay}} {% endif %} </button>
                                     <div class="btn btn-white btn-sm order-quantity-container">
-                                        <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość sztuk">
+                                        <div class="input-group">
+                                            <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość sztuk">
+                                            <!--<span class="input-group-addon">{% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</span>-->
+                                        </div>
                                     </div>
-                                        <button class="btn btn-primary btn-sm add-to-cart" data-articleid="{{article.Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
+                                    <button class="btn btn-white btn-sm available-stock-state">{% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</button>
+                                    <button class="btn btn-primary btn-sm add-to-cart" data-unit-rounding="{{article.Unitrounding}}" data-articleid="{{article.Id}}"><i class="fa fa-cart-plus"></i> Do koszyka</button>
                                     {% if article.Quantity == 0 %}
                                     <button class="btn btn-warning btn-sm add-notification" onclick="ArticleNotification({{article.Id}})" title="Powiadom o dostępności"><i class="fa fa-comment"></i></button>
                                     {% endif %}

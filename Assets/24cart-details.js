@@ -43,10 +43,27 @@
         });
         instance.$element.on('focusout', 'input[type="text"].ordered-quantity', function (e) {
             var $this = $(e.currentTarget);
+
+            var maxPrecision = $this.data('unit-rounding');
+            var precisionValidationResult = validateMaxPrecisionInput($this.val(), maxPrecision);
+            if (!precisionValidationResult) {
+                swal("", "Maksymalna precyzja dla tej jednostki wynosi: " + maxPrecision + " miejsc po przecinku.", "warning");
+                setTimeout(() => $this.trigger('focusout'), 1000);
+                return;
+            }
+
             instance.articleQuantityChanged($this);
         });        
         instance.$element.on('touchspin.on.stopspin', 'input[type="text"].ordered-quantity', function (e) {
             var $this = $(e.currentTarget);
+
+            var maxPrecision = $this.data('unit-rounding');
+            var precisionValidationResult = validateMaxPrecisionInput($this.val(), maxPrecision);
+            if (!precisionValidationResult) {
+                swal("", "Maksymalna precyzja dla tej jednostki wynosi: " + maxPrecision + " miejsc po przecinku.", "warning");
+                return;
+            }
+
             instance.articleQuantityChanged($this);
         });
         instance.$element.on('click', '.realize-discound-code', function (e) {
@@ -138,6 +155,9 @@
         var instance = this;
         var id = $field.data('id');
         var quantity = $field.val();
+        if (quantity && quantity.indexOf(".") !== -1) {
+            quantity = quantity.replace(".", ",");
+        }
         $.ajax({
             type: 'POST',
             url: '/Cart/ArticleQuantityChanged',
@@ -189,6 +209,18 @@
         var instance = this;
         return instance.references.$additionalDataForm.valid();
     };
+
+    validateMaxPrecisionInput = function (input, maxPrecision) {
+        if (!input) {
+            return true;
+        } else if (input.indexOf(",") == -1) {
+            return true;
+        } else {
+            let actualPrecision = input.split(",")[1].length;
+            return actualPrecision <= maxPrecision;
+        }
+    }
+
     $.fn[pluginName] = function (options) {
         if (this.length == 1) {
             var pluginData = this.data('plugin_' + pluginName);

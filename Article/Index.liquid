@@ -273,11 +273,12 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#favored-filter-container').favoredFilter({articleGridSel: '#article-grid'});
         $('#filter-menu').filterMenu({articleGridSel: '#article-grid'});
         $('#category-menu').categoryMenu({ categoryBranchIds: {{CategoryBranchIds}} });
         $('#article-grid').collection({ 
             preloaderPrototypeSel: '.grid-preloader-prototype', selectedCategoryId: {% if  CategoryId != null %} {{CategoryId}} {% else %} null {% endif %},
-        filterSel: '#filter-menu', scaleToWindowHeight: true,search: '{{Search}}'
+        filterSel: '#filter-menu', scaleToWindowHeight: true,search: '{{Search}}',favoredFilterSel: '#favored-filter-container'
         });    
     });
 </script>
