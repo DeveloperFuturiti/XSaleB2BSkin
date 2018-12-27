@@ -79,14 +79,14 @@
         instance.showResultBox();
         //instance.$element.empty();
         var url = instance.$element.data('url');
-        var favoredFilterVal = $(instance.options.favoredFilterSel).favoredFilter().GetValue();
+        //var favoredFilterVal = $(instance.options.favoredFilterSel).favoredFilter().GetValue();
         $.ajax({
             type: 'POST',
             url: url,
             cache: false,
             data: {
                 value: inputValue,
-                favoredFilter: favoredFilterVal
+                //favoredFilter: favoredFilterVal
             },
             xhr: function () {  // Custom XMLHttpRequest
                 var myXhr = $.ajaxSettings.xhr();

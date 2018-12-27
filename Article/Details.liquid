@@ -72,12 +72,8 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <h1 class="product-main-price">
-                                {% if  Article.Price == null %}
+                            <h1 class="product-main-price asynchronous-price-label" data-id="{{article.Id}}" data-offerid="{{article.Offer_id}}" data-postfix=" netto"><!-- data-offerid atrybut opcjonalny, optymalizacja wydajności-->
                                 -
-                                {% else %}
-                                {{Article.Pricedisplay}} {{CurrencyTypeName}} netto
-                                {% endif %}
                                 <small class="text-muted"></small>
                             </h1>
                         </div>

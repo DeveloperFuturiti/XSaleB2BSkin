@@ -15,12 +15,12 @@
     CartSummary.prototype.init = function () {
         var instance = this;
         instance.references.$addressDataForm = $(instance.options.addressDataFormSel);        
-        instance.references.$addressDataForm.on('change', 'select', function (e) {
-            instance.submitAddressDataForm.apply(instance, [true, true]);
-        });
-        instance.references.$addressDataForm.on('focusout', 'input[type="text"], textarea[type="text"]', function (e) {
-            instance.submitAddressDataForm();
-        });                
+        //instance.references.$addressDataForm.on('change', 'select', function (e) {
+        //    instance.submitAddressDataForm.apply(instance, [true, true]);
+        //});
+        //instance.references.$addressDataForm.on('focusout', 'input[type="text"], textarea[type="text"]', function (e) {
+        //    instance.submitAddressDataForm();
+        //});                
         instance.$element.on('click', '.finalize-order', function (e) {
             var $this = $(e.currentTarget);
             var id = $this.closest('.cart-details').data('id');            
@@ -46,17 +46,33 @@
                         SAlert.Warning(result.Data.ErrorMessage);
                     }
                 }
-            };                        
-            if (instance.checkLimitWarning.apply(instance,[])) {                
+            };
+
+            if (instance.options.BlockFinalize === true) {
+                SAlert.Warning(instance.options.BlockLimitReachedMessage);
+                return;
+            }
+
+            if (instance.checkLimitWarning.apply(instance, [])) {
                 SAlert.Confirm({
                     content: 'Limit kredytowy został przekroczony, czy na pewno chcesz zrealizować zamówienie?',
                     handler: function () {
                         submitWithMessage();
                     }
-                },false);
-            } else {                
-                submitWithMessage();
-            }                                                            
+                }, false);
+                return;
+            }
+   
+            if (instance.options.ShowLimitWarningAlert === true) {
+                SAlert.Confirm({
+                    content: 'Limit handlowy został przekroczony, czy mimo to zrealizować zamówienie?',
+                    handler: function () {
+                        submitWithMessage();
+                    }
+                }, false);
+                return;
+            }
+            submitWithMessage();                                                                                       
         });
         instance.$element.on('click', '.send-to-accept', function (e) {
             var $this = $(e.currentTarget);
@@ -86,11 +102,11 @@
             };                                                
             submitWithMessage();                                   
         });
-        window.onbeforeunload = function () {
-            if (!instance.submitAddressDataForm.apply(instance, [false, false])) {
-                return 'Wprowadzone dane wysyłki mogą nie zostać zapisane. Sprawdź poprawność danych.';
-            }
-        };
+        //window.onbeforeunload = function () {
+        //    if (!instance.submitAddressDataForm.apply(instance, [false, false])) {
+        //        return 'Wprowadzone dane wysyłki mogą nie zostać zapisane. Sprawdź poprawność danych.';
+        //    }
+        //};
         var cancelCart = instance.$element.data('cancel');
         if (cancelCart) {
             instance.confirmCancel();
@@ -263,31 +279,31 @@
             return true;
         }
         if (instance.validateAddressDataForm()) {
-            var id = instance.$element.data('id');
-            var formSerialized = instance.references.$addressDataForm.serialize();
-            formSerialized.Id = id;
-            var result = $.ajax({
-                type: 'POST',
-                url: '/Cart/AddressData',
-                cache: false,
-                data: formSerialized,
-                async: async != null ? async : true,
-                success: function (data) {
-                    if (data.Success) {
-                    } else {
-                    }
-                    if (reloadSummary == true) {
-                        instance.references.$cartSummary.trigger('reload');
-                    }
-                }
-            });
-            if (async != null && async == false) {
-                if (result != null && result.responseJSON != null && result.responseJSON.Success) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        //    var id = instance.$element.data('id');
+        //    var formSerialized = instance.references.$addressDataForm.serialize();
+        //    formSerialized.Id = id;
+        //    var result = $.ajax({
+        //        type: 'POST',
+        //        url: '/Cart/AddressData',
+        //        cache: false,
+        //        data: formSerialized,
+        //        async: async != null ? async : true,
+        //        success: function (data) {
+        //            if (data.Success) {
+        //            } else {
+        //            }
+        //            if (reloadSummary == true) {
+        //                instance.references.$cartSummary.trigger('reload');
+        //            }
+        //        }
+        //    });
+        //    if (async != null && async == false) {
+        //        if (result != null && result.responseJSON != null && result.responseJSON.Success) {
+        //            return true;
+        //        } else {
+        //            return false;
+        //        }
+        //    }
             return true;
         }
         return false;

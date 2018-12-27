@@ -4,7 +4,7 @@
         <small class="font-bold">Nie znaleziono towarów dla wybranego filtra</small>
     </div>
 </div>
-    {% endif %}
+{% endif %}
     {% for article in Articles %}
     {% if  article.Open_row == true %}
     <div class="row">
@@ -30,13 +30,9 @@
                         </a>
                     </div>
                     <div class="product-desc">
-                        <span class="product-price">
-                            {% if  article.Price == null %}
+                        <span class="product-price asynchronous-price-label" data-id="{{article.Id}}" data-offerid="{{article.Offer_id}}" data-postfix=" netto"><!-- data-offerid atrybut opcjonalny, optymalizacja wydajności-->
                             -
-                            {% else %}
-                            {{article.Pricedisplay}} {{CurrencyTypeName}} netto
-                            {% endif %}
-                        </span>
+                        </span>                        
                         <small class="text-muted">{{article.Code}}</small>
                         <small class="text-muted">{{article.EAN}}</small>
                         <div id="trun-{{article.guid}}" class="" style="max-height:66px;">

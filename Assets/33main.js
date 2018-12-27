@@ -260,11 +260,11 @@ var ButtonExtension = {
 
 var Select2Extension = {
 
-    initSelect2List: function (SelectorId, ActionUrl, Placeholder) {        
+    initSelect2List: function (SelectorId, ActionUrl, Placeholder, allowClear) {        
             if ((SelectorId != null || SelectorId != "") && (ActionUrl != null || ActionUrl != "")) {
                 $(SelectorId).select2({
                     placeholder: Placeholder,
-                    allowClear: true,
+                    allowClear: (allowClear !== null && allowClear !== undefined) ? allowClear : true,
                     ajax: {
                         type: 'POST',
                         url: ActionUrl,
@@ -594,6 +594,32 @@ var SelectList = {
             var eventChange = SelectList.getChangeEvent();
             $selectList.trigger(eventChange);
         }
+    }
+};
+
+var Cookies = {
+
+    setCookie: function (cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+
+    getCookie: function (cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
 };
 

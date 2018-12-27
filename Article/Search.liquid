@@ -10,8 +10,8 @@
                 </a>
                 <div class="media-body">
                     <a href="/Towar/{{item.Article.Id}}" class="" aria-hidden="true">
-                        <strong class="pull-right m-r-xs m-t-xs">{{item.Article.Pricedisplay}} {{CurrencyTypeName}}</strong>
-                        <strong class="">{{item.Article.Name}}</strong> <br>
+                        <strong class="pull-right m-r-xs m-t-xs asynchronous-price-label" data-id="{{item.Article.Id}}" data-offerid="{{item.Article.Offer_id}}"></strong><!-- data-offerid atrybut opcjonalny, optymalizacja wydajności-->
+                        <strong class="">{{item.Article.Name}}</strong><br>
                         <small class="text-muted">{{item.Tags}}</small><br>                
                     </a>
                     {% if item.Category_id != blank %}

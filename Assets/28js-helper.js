@@ -23,6 +23,13 @@
         }
         return check;
     },
+    isChrome: function () {
+        var check = false;
+        if (!isEdge && /chrome/i.test(userAgent)) {
+            check = true;
+        }
+        return check;
+    },
     string: {
         encodeSpecialCharactersMVCUrl: function (s) {
             var s = encodeURI(s.replace(/:/g, "").replace(/&/g, "").replace(/#/g, "").replace(/\?/g, "").replace(/\//g, "").replace(/\%/g, "").replace(/\+/g, "").replace(/=/g, ""));

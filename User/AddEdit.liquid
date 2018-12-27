@@ -88,10 +88,21 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="CostLimit">Limit handlowy</label>
+                    <div class="form-group PageId">
+                        <label class="col-sm-2 control-label" for="BranchId">Oddział</label>
                         <div class="col-sm-4">
-                            <input class="form-control" data-val="true" data-val-number="Wartość dla pola Limit handlowy musi być liczbą" id="CostLimit" name="CostLimit" type="text" value="{{CostLimit}}">
+                            <select title="Oddział" name="BranchId" class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola Oddział musi być liczbą" placeholder="Wybierz z listy">
+                                <option value="">-- Wybierz z listy --</option>
+                                {% for listItem in BranchList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="CostLimit">Maksymalny koszyk</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-number="Wartość dla pola Maksymalny koszyk musi być liczbą" id="CostLimit" name="CostLimit" type="text" value="{{CostLimit}}">
                             <span class="field-validation-valid" data-valmsg-for="CostLimit" data-valmsg-replace="true"></span>
                         </div>
                     </div>

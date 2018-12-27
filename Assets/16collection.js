@@ -77,9 +77,44 @@
             if (instance.options.filterSel!=null) {
                 serializedFilter = $(instance.options.filterSel).filterMenu().SerializeFilter();
             }
+            updateContactFavoredOffersFilter = false;
             if (instance.options.favoredFilterSel != null) {
-                favoredFilterVal = $(instance.options.favoredFilterSel).favoredFilter().GetValue();
+                favoredFilterVal = $(instance.options.favoredFilterSel).is(':checked');
+                updateContactFavoredOffersFilter = true;
+            } else {
+                favoredFilterVal = false;
             }
+            if (instance.options.onlyAvailableFilterSel != null) {
+                onlyAvailableFilterVal = $(instance.options.onlyAvailableFilterSel).is(':checked');
+            } else {
+                onlyAvailableFilterVal = false;
+            }
+            
+            orderBy = null;
+            orderByType = null;
+            var $orderByBtn = $('.sort-filter').first();
+            if ($orderByBtn !== null && $orderByBtn !== undefined) {
+                var val = $orderByBtn.val();
+                if (val !== null) {
+                    if (val == 0) {
+                        orderBy = "";
+                        orderByType = "";
+                    } else if (val == 1) {
+                        orderBy = "name";
+                        orderByType = "asc";
+                    } else if (val == 2) {
+                        orderBy = "name";
+                        orderByType = "desc";
+                    } else if (val == 3) {
+                        orderBy = "priceQuick";
+                        orderByType = "desc";
+                    } else if (val == 4) {
+                        orderBy = "priceQuick";
+                        orderByType = "asc";
+                    }
+                }
+            }
+
             $.ajax({
                 type: 'POST',
                 url: instance.references.getDataUrl,
@@ -93,7 +128,11 @@
                     CategoryId: instance.options.selectedCategoryId,
                     Filters: serializedFilter.Filters,
                     Search: instance.options.search,
-                    FavoredFilter: favoredFilterVal
+                    FavoredFilter: favoredFilterVal,
+                    OrderBy: orderBy,
+                    OrderByType: orderByType,
+                    InStockFilter: onlyAvailableFilterVal,
+                    UpdateContactFavoredOffersFilter: updateContactFavoredOffersFilter
                 },
                 xhr: function () {  // Custom XMLHttpRequest
                     var myXhr = $.ajaxSettings.xhr();

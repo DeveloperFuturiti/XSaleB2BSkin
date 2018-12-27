@@ -34,12 +34,12 @@
                 <div class="panel-menu">
                     @BlockArea("Menu1")
                     <ul class="nav navbar-top-links navbar-right">
-                        <li id="favored-filter-container" class="checkbox favored-filter {% if HideFavoredOffersFilter %} hidden {% endif %}" >
+                        <!--<li id="favored-filter-container" class="checkbox favored-filter {% if HideFavoredOffersFilter %} hidden {% endif %}" >
                             <input type="checkbox" id="favored-filter" {% if FavoredOffersFilter %} checked="checked" {% endif %}>
                             <label for="favored-filter" style="font-weight: 600;">
                                 Wyróżnione
                             </label>
-                        </li>
+                        </li>-->
                         <li class="small-menu-list dropdown pull-left">
                             <a class="fusion-flyout-menu-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
                                 <div style="width:100px">
@@ -55,7 +55,7 @@
                                     {% if  menuItem.Use_link == true %}
                                     <a href="{{menuItem.Link}}">
                                         {% else %}
-                                        <a href="/{{menuItem.Link}}">
+                                        <a href="{{menuItem.Link}}">
                                             {% endif %}
                                             {{menuItem.Name}}
                                         </a>
@@ -69,7 +69,7 @@
                                         {% for subItems in menuItem.Menu_items %}
                                         <li class="second-menu-level">
                                             <div class="link-block">
-                                                <a href="../{{subItems.Link}}">
+                                                <a href="{{subItems.Link}}">
                                                     {{subItems.Name}}
                                                 </a>
                                             </div>
@@ -87,7 +87,7 @@
                             {% if  menuItem.Use_link == true %}
                             <a href="{{menuItem.Link}}">
                                 {% else %}
-                                <a href="/{{menuItem.Link}}">
+                                <a href="{{menuItem.Link}}">
                                     {% endif %}
                                     {{menuItem.Name}}
                                 </a>
@@ -101,7 +101,7 @@
                                 {% for subItems in menuItem.Menu_items %}
                                 <li>
                                     <div class="link-block">
-                                        <a href="../{{subItems.Link}}">
+                                        <a href="{{subItems.Link}}">
                                             <strong>{{subItems.Name}}</strong>
                                         </a>
                                     </div>
@@ -154,6 +154,14 @@
     </nav>
     <div id="wrapper" class="gray-bg" style="">        
         <div class="row" style="">
+            {% if  ShowLimits %}
+                <div class="col-lg-12 " >
+                    <div class="row p-w-xl m-r-xs m-l-xs">
+                        <div class="col-lg-12 limit-widget-carousel m-b-none">
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             @BlockArea("BeforeContent")
             @RenderBody()
             @BlockArea("AfterContent")
@@ -162,7 +170,7 @@
 </body>
 <iframe id="downloadDocumentIframe" style="display:none;"></iframe>
 <script>
-    $(document).ready(function () {        
+    $(document).ready(function () {
         changeFavicon('/File/GetFavicon?orgId={{OrganizationId}}&rand=' + makeid())
         $('.footable').footable();
         $(document).on('click', '.download-file', function (event) {
@@ -181,6 +189,9 @@
         $('#article-search').search({
             favoredFilterSel: '#favored-filter-container'
         });
+        setInterval(() => {            
+            $('.asynchronous-price-label').asynchronousPrice();
+        }, 250);
     });
 </script>
 

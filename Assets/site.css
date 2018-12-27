@@ -10676,4 +10676,14 @@ ul.dropdown-menu ul li.second-menu-level:hover{
 .toast-bottom-full-width {
   margin-bottom: 20px; }*/
 
-    
+  
+.ibox-title .label.float-right {
+  float: right;
+}
+  
+.slick-slider.m-b-none {
+    margin-bottom: 0px;
+}
+.limit-widget-index.additional-margin-bottom .col-lg-3 div.ibox {
+    margin-bottom: 20px;
+}

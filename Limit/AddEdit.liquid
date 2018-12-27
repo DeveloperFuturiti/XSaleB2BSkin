@@ -1,0 +1,183 @@
+﻿<div id="add-edit-limit" class="wrapper wrapper-content">
+    <div class="col-md-12">
+        <div class="ibox">
+            <div class="ibox-title"><h5>{% if  ActionType == 1 %}Dodaj{% else %}Edytuj{% endif %}</h5></div>
+            <div class="ibox-content">
+                <form action="/Limit/AddEdit" id="limit-form" class="form-horizontal" method="post" novalidate="novalidate" autocomplete="off">
+                    <div class="form-group">
+                    </div>
+                    <input data-val="true" id="ActionType" name="ActionType" type="hidden" value="{{ActionType}}">
+                    <input data-val="true" data-val-number="Wartość dla pola Id musi być liczbą" data-val-required="Pole Id jest wymagane." id="Id" name="Id" type="hidden" value="{{Id}}">
+                    <input data-val="false" data-val-number="Wartość dla pola Id musi być liczbą" data-val-required="Pole Id jest wymagane." id="CategoryId" name="CategoryId" type="hidden" value="{{CategoryId}}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label " for="Name">Nazwa</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" data-val="true" data-val-required="Pole 'Nazwa' jest wymagane" id="Name" name="Name" type="text" value="{{Name}}">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    {% if  ActionType == 2 %}    
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="LimitType">Typ limitu</label>
+                            <div class="col-sm-4">
+                                <select title="Typ limitu" id="LimitType" name="LimitType" {% if DisableEdit %} readonly="readonly" {% endif %} class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola 'Typ limitu' musi być liczbą" placeholder="Wybierz z listy">
+                                    {% for listItem in LimitTypeList %}
+                                    <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="form-group list-container user-container hidden">
+                            <input data-val="true" id="Users" name="Users" type="hidden" value="">
+                            <select multiple="multiple" size="10" id="user-selectlist">
+                                {% for listItem in UserList %}
+                                    <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>   
+                        <div class="form-group list-container cost-center-container hidden">
+                            <input data-val="true" id="CostCenterIds" name="CostCenterIds" type="hidden" value="">
+                            <select multiple="multiple" size="10" id="cost-center-select-list">
+                                {% for listItem in CostCenterList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>               
+                        <div class="form-group list-container branch-container hidden">
+                            <input data-val="true" id="BranchIds" name="BranchIds" type="hidden" value="">
+                            <select multiple="multiple" size="10" id="branch-select-list">
+                                {% for listItem in BranchList %}
+                                <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>                                                                                                                                                             
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="BillingPeriodType">Okres rozliczeniowy</label>
+                            <div class="col-sm-4">
+                                <select title="Okres rozliczeniowy" name="BillingPeriodType" {% if DisableEdit %} readonly="readonly" {% endif %} class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola 'Okres rozliczeniowy' musi być liczbą" placeholder="Wybierz z listy">
+                                    {% for listItem in BillingPeriodTypeList %}
+                                    <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>                                                           
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label " for="DateFrom">Data od</label>
+                            <div class="col-sm-4">
+                                <input class="form-control from" placeholder="__.__.____" id="DateFrom" data-val="true"  data-val-required="Data od jest wymagane." name="DateFrom" value="{{DateFrom}}" type="text">
+                                <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                var $picker = $('#DateFrom');
+                                                var currentValue = $picker.val();
+                                                $picker.val(null);
+                                                var momentValue = null;
+                                                if (currentValue !== null && currentValue.trim() != '') {
+                                                    momentValue = moment(currentValue, 'L LTS');
+                                                }
+                                                else {
+                                                    momentValue = null
+                                                }
+                                                var datepickerDefaults = {
+                                                    locale: 'pl',
+                                                    useCurrent: false,
+                                                    defaultDate: momentValue,
+                                                    format: 'L'
+                                                };
+                                                $picker.datetimepicker(datepickerDefaults);                                                
+                                            });
+                                </script>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="DateFrom" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label " for="DateTo">Data do</label>
+                            <div class="col-sm-4">
+                                <input class="form-control from" placeholder="__.__.____" id="DateTo" data-val="false"  data-val-required="Data do jest wymagane." name="DateTo" value="{{DateTo}}" type="text">
+                                <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                var $picker = $('#DateTo');
+                                                var currentValue = $picker.val();
+                                                $picker.val(null);
+                                                var momentValue = null;
+                                                if (currentValue !== null && currentValue.trim() != '') {
+                                                    momentValue = moment(currentValue, 'L LTS');
+                                                }
+                                                else {
+                                                    momentValue = null
+                                                }
+                                                var datepickerDefaults = {
+                                                    locale: 'pl',
+                                                    useCurrent: false,
+                                                    defaultDate: momentValue,
+                                                    format: 'L'
+                                                };
+                                                $picker.datetimepicker(datepickerDefaults);
+                                            });
+                                </script>
+                                <!--<span class="field-validation-valid text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="GoesToTheNextBillingPeriod">Przechodzi na następny okres rozliczeniowy</label>
+                            <div class="col-sm-4">
+                                <div class="checkbox checkbox-primary m-t-xxs" style="">
+                                    <input type="checkbox" id="GoesToTheNextBillingPeriod" value="true" name="GoesToTheNextBillingPeriod" {% if GoesToTheNextBillingPeriod == true %}checked{% endif %}>
+                                    <label for="GoesToTheNextBillingPeriod"></label>
+                          
+                                      </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="DisplayOnDesktop">Widoczny na pulpicie</label>
+                            <div class="col-sm-4">
+                                <div class="checkbox checkbox-primary m-t-xxs" style="">
+                                    <input type="checkbox" id="DisplayOnDesktop" value="true" name="DisplayOnDesktop" {% if DisplayOnDesktop == true %}checked{% endif %}>
+                                    <label for="DisplayOnDesktop"></label>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="LimitApplicationType">Typ zastosowania limitu</label>
+                            <div class="col-sm-4">
+                                <select title="Typ zastosowania limitu" id="LimitApplicationType" name="LimitApplicationType" {% if DisableEdit %} readonly="readonly" {% endif %} class="form-control m-b-sm" aria-required="false" data-val="true" data-val-number="Wartość dla pola 'Typ zastosowania limitu' musi być liczbą" placeholder="Wybierz z listy">
+                                    {% for listItem in LimitApplicationTypeList %}
+                                    <option {% if listItem.Selected == true %} selected="selected" {% endif %} value="{{listItem.Value}}">{{listItem.Text}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="Value">Limit handlowy</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" data-val="true" data-val-number="Wartość dla pola Limit handlowy musi być liczbą" id="Value" name="Value" type="text" value="{{Value}}">
+                                <span class="field-validation-valid" data-valmsg-for="Value" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="Active">Aktywny</label>
+                            <div class="col-sm-4">
+                                <div class="checkbox checkbox-primary m-t-xxs" style="">
+                                    <input type="checkbox" id="Active" value="true" name="Active" {% if Active == true %}checked{% endif %}>
+                                    <label for="Active"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--ArticleLimit
+                            ArticleLimitType
+                            -->
+                    {% endif %}       
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-2">
+                            <a class="btn-default btn" href="/Limity"><i class="fa fa-arrow-left"></i> Powrót do listy limitów</a>                            
+                            <button class="btn-primary btn submit" type="button">Zapisz</button>
+                            <script type="text/javascript">
+                                $('#add-edit-limit').addEditLimit({});                                                           
+                            </script>                         
+                        </div>
+                    </div>                                     
+                </form>
+            </div>
+        </div>        
+    </div>
+</div>
