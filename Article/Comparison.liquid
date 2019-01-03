@@ -1,0 +1,141 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="col-lg-12">
+        <div class="ibox border-left-right border-bottom">
+            <div class="ibox-content">
+                <div class="row">                    
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        {% for article in Articles %}
+                        <div class="col-md-2">
+                            <div class="text-center m-t-lg">
+                                <img src="/Article/GetImageByOfferId?offerId={{article.Offer_id}}" alt="Zdjęcie" style="width: 100%">                                
+                            </div>                            
+                            <div class="text-center m-t-lg product-desc" style="padding:0;">
+                                <a href="/Towar/{{article.Id}}"><h2 class="product-name">{{article.Name}}</h2></a>                                
+                                <!--<small>{{article.Code}}</small>-->
+                                <strong class="asynchronous-price-label" data-id="{{article.Id}}" data-offerid="{{article.Offer_id}}" data-postfix=" netto">
+                                    <!-- data-offerid atrybut opcjonalny, optymalizacja wydajności-->
+                                    -
+                                </strong>
+                                <div id="rating-widget-{{article.Offer_id}}" class="rating-widget" data-offerid="{{article.Offer_id}}" data-loadratingurl="/Article/LoadOfferRating" data-rateofferurl="/Article/RateOffer">
+                                    <dl class="dl-horizontal small m-b-xs m-t-none small">
+                                        <dd class="stars-inactive" style="margin:inherit;">
+                                            <span style="font-size:16px;">
+                                                <i class="fa fa-star-o" data-starnumber="1"></i>
+                                                <i class="fa fa-star-o" data-starnumber="2"></i>
+                                                <i class="fa fa-star-o" data-starnumber="3"></i>
+                                                <i class="fa fa-star-o" data-starnumber="4"></i>
+                                                <i class="fa fa-star-o" data-starnumber="5"></i>
+                                                <span class="average">0 (0)</span>
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="btn-group add-to-cart-container">
+                                    <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{% if article.Quantitydisplay == null %} 0 {% else %} {{article.Quantitydisplay}} {% endif %} </button>
+                                    <div class="btn btn-white btn-sm order-quantity-container">
+                                        <div class="input-group">
+                                            <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość sztuk">
+                                            <!--<span class="input-group-addon">{% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</span>-->
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-white btn-sm available-stock-state">{% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</button>
+                                    <button class="btn btn-primary btn-sm add-to-cart" data-unit-rounding="{{article.Unitrounding}}" data-articleid="{{article.Id}}"><i class="fa fa-cart-plus"></i></button>
+                                </div>
+                                <script type="text/javascript">
+                                    $('.rating-widget').rateWidget();
+                                </script>
+                                
+                            </div>
+                            <div>
+                                <div class="hr-line-dashed m-b-sm"></div>
+                                <div class="text-center description-container short">
+                                    <div class="short-description"><!--truncate fh-200 is-truncated-->
+                                        <p class="m-b-none ">
+                                            {{Article.Short_description}}
+                                        </p>
+                                    </div>
+                                    <div class="full-description">
+                                        <p class="m-b-none ">
+                                            {{Article.Description}}
+                                        </p>
+                                    </div>
+                                    {% if Article.Description.size > 200 %}
+                                    <div class="m-b-sm">
+                                        <a class="more "><small>Więcej...</small></a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-1">
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">                   
+                        {% for attribute in Attributes %}
+                        <div class="row">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2 p-h-xs">
+                                <strong>{{attribute.Name}}</strong>
+                            </div>
+                            <div class="col-md-2 p-h-xs border-top {% if attribute.Highlighted %} text-danger {% endif %}">
+                                {{attribute.Val1}}
+                            </div>
+                            <div class="col-md-2 p-h-xs border-top {% if attribute.Highlighted %} text-danger {% endif %}">
+                                {{attribute.Val2}}
+                            </div>
+                            <div class="col-md-2 p-h-xs border-top {% if attribute.Highlighted %} text-danger {% endif %}">
+                                {{attribute.Val3}}
+                            </div>
+                            <div class="col-md-2 p-h-xs border-top {% if attribute.Highlighted %} text-danger {% endif %}">
+                                {{attribute.Val4}}
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        {% for article in Articles %}                        
+                        <div class="col-md-2">
+                            <div class="hr-line-dashed m-b-sm"></div>
+                            <div class="text-center padding-none">
+                                <p class="text-center m-t-md">
+                                    <a href="/Article/Comparison?rm={{article.Id}}" class="btn btn-danger"><i class="fa fa-trash"></i> Usuń</a>
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-1">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $(document).ready(() => {
+        $(document).on('click', '.description-container .more', function (e) {
+            var $element = $(e.currentTarget);
+            var $container = $element.closest('.description-container');
+            if ($container.hasClass('short')) 
+                $container.removeClass('short');
+            else 
+                $container.addClass('short');
+        });
+    });
+</script>

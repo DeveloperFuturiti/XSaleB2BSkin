@@ -1,4 +1,34 @@
 <body class="pace-done" style="">
+    {% if  ShowComparisonPreview %}        
+    <div class="comparison-tab">
+        <div class="comparison-tab-box">
+            <div class="show-comparison-box-icon hidden" title="Porównaj">
+                <i class="fa fa-balance-scale"></i>
+            </div>
+            <div class="selected-to-compare">
+                <div class="title">
+                    Wybrane do porównania <br>
+                </div>
+                <div class="item content">                    
+                </div>                
+                <div class="item compare-button">
+                    <span class="">
+                        <a href="/Porownanie" >
+                            Porównaj
+                        </a>
+                    </span>
+                </div>  
+                <div class="item remove-button">
+                    <span class="danger">
+                        <a href="javascript:void(0);" class="danger reset">
+                            Wyczyść
+                        </a>
+                    </span>
+                </div>                                                
+            </div>
+        </div>
+    </div>
+    {% endif %}
     @BlockArea("Header")
     <nav class="navbar navbar-static-top border-bottom" style="margin-bottom: 0">
         <div class="">
@@ -9,10 +39,10 @@
                 <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
             </div>-->
         </div>
-        <div class="" style="margin-bottom:20px;">
+        <div class="" style="margin-bottom:10px;">
             <div class="row">
                 <!--<div class="col-lg-5">-->
-                    <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:60px; margin-left:-30px; {% else %} width:650px; {% endif %} display: inline-table;">
+                    <div id="article-search" class="navbar-header input-group m-t-lg m-l-md " data-url="/Article/Search" style="{% if IsMobileDevice %} width:100%; padding-left:60px; margin-left:-30px; {% else %} width:450px; {% endif %} display: inline-table;">
                         <input type="text" name="Search" placeholder="Wyszukaj w sklepie..." class="input form-control search" value="{{Search}}" title="Wpisz szukaną frazę">
                         <ul class="result-box dropdown-menu dropdown-alerts" style="{% if IsMobileDevice %} margin-left:60px; {% endif %}display:none; position:absolute;">
                             <li class="preloader" style="display:none;">
@@ -33,13 +63,75 @@
                 <!--</div>-->
                 <div class="panel-menu">
                     @BlockArea("Menu1")
+                    
                     <ul class="nav navbar-top-links navbar-right">
-                        <!--<li id="favored-filter-container" class="checkbox favored-filter {% if HideFavoredOffersFilter %} hidden {% endif %}" >
-                            <input type="checkbox" id="favored-filter" {% if FavoredOffersFilter %} checked="checked" {% endif %}>
-                            <label for="favored-filter" style="font-weight: 600;">
-                                Wyróżnione
-                            </label>
-                        </li>-->
+                        <li style="display:inline-block" class="pull-right">
+
+                            <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
+                                {% if  UseLimits == true %}
+                                <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}}</strong></a>
+                                {% endif %}
+                                <br />
+                                {{LogOutAntiForgery}}
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="no-padding"><i class="fa fa-sign-out fa-align-center "></i> Wyloguj</a>
+                            </form>
+                        </li>
+                        <li id="cart-navbar" class="dropdown pull-right" style="display:inline-block" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
+                                <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li class="preloader" style="display:none;">
+                                    <div class="sk-spinner sk-spinner-wave">
+                                        <div class="sk-rect1"></div>
+                                        <div class="sk-rect2"></div>
+                                        <div class="sk-rect3"></div>
+                                        <div class="sk-rect4"></div>
+                                        <div class="sk-rect5"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a class="add-cart" href="javascript:void(0);">
+                                            <strong>Dodaj koszyk</strong>
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% if  ShowTradeManager == true %}
+                    <div class="pull-right" style="width:250px;white-space: nowrap;">
+                        {% if  TradeManager.Display_image == true %}
+                        <div style="display: inline-block;vertical-align: top;white-space: normal;">
+                            <img style="width: 70px;" alt="image" class="img-circle m-t-xs img-fluid" src="{{TradeManager.Image_path}}">
+                        </div>
+                        {% endif %}
+                        <div style="padding:unset;width:200px;display: inline-block;vertical-align: top;white-space: normal;">
+                            <div class="m-t-xs font-bold"><small>Opiekun</small></div>
+                            <h3 style="margin-bottom: 0px;"><strong>{{TradeManager.First_name}} {{TradeManager.Last_name}}</strong></h3>
+                            <div>
+                                {% if  TradeManager.Display_phone_number == true %}
+                                <small><i class="fa fa-phone"></i> {{TradeManager.Phone_number}}</small><br>
+                                {% endif %}
+
+                                {% if  TradeManager.Display_mobile_phone_number == true %}
+                                <small><i class="fa fa-mobile"></i> {{TradeManager.Mobile_phone_number}}</small><br>
+                                {% endif %}
+
+                                {% if  TradeManager.Display_email == true %}
+                                <small><i class="fa fa-envelope"></i>  {{TradeManager.Email}}</small><br>
+                                {% endif %}
+
+                                {% if  TradeManager.Display_communicator == true %}
+                                <small><i class="fa fa-comment"></i> {{TradeManager.Communicator}}</small><br>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <ul class="nav navbar-top-links navbar-left">
                         <li class="small-menu-list dropdown pull-left">
                             <a class="fusion-flyout-menu-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
                                 <div style="width:100px">
@@ -111,41 +203,6 @@
                         </li>
                         {% endif %}
                         {% endfor %}
-                        <li style="display:inline-block" class="pull-right">
-
-                            <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
-                                {% if  UseLimits == true %}
-                                <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}}</strong></a>
-                                {% endif %}
-                                <br />
-                                {{LogOutAntiForgery}}
-                                <a href="javascript:document.getElementById('logoutForm').submit()" class="no-padding"><i class="fa fa-sign-out fa-align-center "></i> Wyloguj</a>
-                            </form>
-                        </li>
-                        <li id="cart-navbar" class="dropdown pull-right" style="display:inline-block" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false">
-                                <i class="fa fa-shopping-cart" style="font-size:16px;"></i>  <span class="label label-primary cart-items">{{CartItems}}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li class="preloader" style="display:none;">
-                                    <div class="sk-spinner sk-spinner-wave">
-                                        <div class="sk-rect1"></div>
-                                        <div class="sk-rect2"></div>
-                                        <div class="sk-rect3"></div>
-                                        <div class="sk-rect4"></div>
-                                        <div class="sk-rect5"></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a class="add-cart" href="javascript:void(0);">
-                                            <strong>Dodaj koszyk</strong>
-                                            <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                     @BlockArea("Menu2")
                 </div>
@@ -192,6 +249,7 @@
         setInterval(() => {            
             $('.asynchronous-price-label').asynchronousPrice();
         }, 250);
+        $('.comparison-tab').articleComparison();
     });
 </script>
 

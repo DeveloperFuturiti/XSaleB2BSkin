@@ -21,8 +21,8 @@
                     </label>
                     {% endif %}
                     <div class="select-check-container checkbox checkbox-primary checkbox-inline m-t-xxs">
-                        <input type="checkbox" id="select-article-{{article.Id}}" value="{{article.Id}}" name="select-article-{{article.Id}}" aria-hidden="true">
-                        <label for="select-article-{{article.Id}}">&nbsp;</label>
+                        <input type="checkbox" id="select-article-{{article.Id}}" value="{{article.Id}}" name="select-article-{{article.Id}}" aria-hidden="true" class="select-article" data-articleid="{{article.Id}}" {% if article.Selected %} checked="checked" {% endif %}>
+                        <label for="select-article-{{article.Id}}">Do porównania</label>
                     </div>
                     <div class="product-image-box">
                         <a href="/Towar/{{article.Id}}" style="color:inherit">
