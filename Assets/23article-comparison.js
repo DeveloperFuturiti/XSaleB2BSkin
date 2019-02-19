@@ -138,7 +138,7 @@
                     productDiv.appendChild(productNameA);
                     $content[0].appendChild(productDiv);
                     var productRemoveA = document.createElement('a');
-                    productRemoveA.setAttribute('href', 'javasctipt:void(0);');
+                    productRemoveA.setAttribute('href', 'javascript:void(0);');
                     productRemoveA.setAttribute('data-id', x.ArticleId);
                     productRemoveA.className = 'remove btn btn-xs btn-outline btn-danger';
                     var trashIcon = document.createElement('i');

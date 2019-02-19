@@ -65,7 +65,8 @@
                                     </div>
                                     {% if Article.Description.size > 200 %}
                                     <div class="m-b-sm">
-                                        <a class="more "><small>Więcej...</small></a>
+                                        <a class="more open"><small>Więcej...</small></a>
+                                        <a class="more slide"><small>Mniej</small></a>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -82,7 +83,7 @@
                             <div class="col-md-1">
                             </div>
                             <div class="col-md-2 p-h-xs">
-                                <strong>{{attribute.Name}}</strong>
+                                <h4>{{attribute.Name}}</h4>
                             </div>
                             <div class="col-md-2 p-h-xs border-top {% if attribute.Highlighted %} text-danger {% endif %}">
                                 {{attribute.Val1}}
@@ -113,8 +114,10 @@
                         <div class="col-md-2">
                             <div class="hr-line-dashed m-b-sm"></div>
                             <div class="text-center padding-none">
-                                <p class="text-center m-t-md">
+                                <p class="text-center m-t-md">                                    
                                     <a href="/Article/Comparison?rm={{article.Id}}" class="btn btn-danger"><i class="fa fa-trash"></i> Usuń</a>
+                                    <br />
+                                    <label>{{article.Name}}</label>
                                 </p>
                             </div>
                         </div>
