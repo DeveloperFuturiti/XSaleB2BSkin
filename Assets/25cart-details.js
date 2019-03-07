@@ -90,9 +90,11 @@
             }
         });      
         window.onbeforeunload = function () {
-            if (!instance.submitAdditionalDataForm.apply(instance, [false, false])) {
-                return 'Błąd podczas zapisu danych zamówienia';
-            }            
+            //Wyłączone na życzenie Wojtaka M  06.03.19, klient po wyjściu z koszyka w przypadku nie uzupełnienia poprawnie wszystkich danych może je utracić bez ostrzeżenia
+            //if (!instance.submitAdditionalDataForm.apply(instance, [false, false])) {
+            //    return 'Błąd podczas zapisu danych zamówienia';
+            //}            
+            instance.submitAdditionalDataForm.apply(instance, [false, false]);
         };        
     };
     CartDetails.prototype.deleteItem = function (id, $url) {
