@@ -69,7 +69,7 @@
 
                             <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
                                 {% if  UseLimits == true %}
-                                <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}}</strong></a>
+                                <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}} netto</strong></a>
                                 {% endif %}
                                 <br />
                                 {{LogOutAntiForgery}}

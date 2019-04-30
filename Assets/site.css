@@ -6682,6 +6682,13 @@ table.shoping-cart-table {
     right: 0;
 }
 
+.product-price.gross-price {  
+    padding: 2px 8px;  
+    font-size: 11px;
+    top: 0px;   
+    background-color: #2769b2; 
+}
+
 .product-favored {
     font-size: 9px;
     color: #eea357;

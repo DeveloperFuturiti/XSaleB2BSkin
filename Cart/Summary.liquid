@@ -14,7 +14,9 @@
                                 <th style="width: 1%" class="text-center">Id.</th>
                                 <th>Artykuł</th>
                                 <th style="width: 8%" class="text-center">Ilość</th>
-                                <th style="width: 15%" class="text-center">Cena netto</th>
+                                <th style="width: 10%" class="text-center">Wartość netto</th>
+                                <th style="width: 10%" class="text-center">Wartość brutto</th>
+                                <th style="width: 5%" class="text-center">Stawka VAT</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +34,8 @@
                                 </td>
                                 <td class="text-center">{{article.Ordered_quantity_to_Display}} {% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</td>
                                 <td class="text-center"><span class="label label-primary price-label">{{article.Total_price_display}} {{CurrencyTypeName}}</span></td>
+                                <td class="text-center"><span class="label label-primary price-label">{{article.Total_gross_price_display}} {{CurrencyTypeName}} </span></td>
+                                <td class="text-center"><span class="label label-primary price-label">{{article.Vat_rate}}% </span></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -44,18 +48,21 @@
                         <br />
                         <!--<label>VAT:</label>
                         <span> {{VatAmount}} {{CurrencyTypeName}}</span>
-                        <br />
+                        <br />-->
                         <label>Brutto:</label>
                         <span> {{GrossPriceDisplay}} {{CurrencyTypeName}}</span>   
-                        <br />-->
-                        <label>Koszt dostawy:</label>
-                        <span> {{ShipmentPrice}} {{CurrencyTypeName}} netto</span> 
                         <br />
-                        <br />                                             
-                        <br />
+                        <label>Koszt dostawy netto:</label>
+                        <span> {{ShipmentPrice}} {{CurrencyTypeName}} </span> 
+                        <label> brutto:</label>
+                        <span> {{ShipmentGrossPrice}} {{CurrencyTypeName}}</span>  
+                        <br />                                                                                           
                         <h3 class="text-navy">
                            Razem netto: {{TotalAmountDisplay}} {{CurrencyTypeName}}
                         </h3>
+                        <h4 class="text-navy">
+                            butto: {{TotalGrossAmountDisplay}} {{CurrencyTypeName}}
+                        </h4>
                         <span class="help-block m-b-none text-danger" style="{% if ShowMinimalAmountAlert == false %}display:none;{% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalana wartość zamówienia to: {{MinimalAmount}} {{CurrencyTypeName}}</span>
                     </div>
                     <label> Forma dostawy:</label>

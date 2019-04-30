@@ -1,4 +1,9 @@
-﻿; (function ($, window, document, undefined) {
+﻿var GlobalPriceCache = {
+    requestStarted: [],
+    store: {
+    }
+}
+; (function ($, window, document, undefined) {
     var pluginName = 'asynchronousPrice',
         defaults = {
 
@@ -14,31 +19,50 @@
         };
         this.init();
     };
-    AsynchronousPrice.prototype.init = function () {        
+    AsynchronousPrice.prototype.init = function () {
         var instance = this;
         var id = instance.$element.data('id');
         var offerId = instance.$element.data('offerid');
+                
+        if (GlobalPriceCache.requestStarted.indexOf(id) > -1) {
+            var waitForData = setInterval(() => {
+                var cacheArticlePrice = GlobalPriceCache.store[id];
+                if (cacheArticlePrice != null) {
+                    clearInterval(waitForData);
+                    instance.renderPrice(GlobalPriceCache.store[id]);
+                }
+            }, 250);
+        } else {
+            GlobalPriceCache.requestStarted.push(id);
+            $.ajax({
+                type: "POST",
+                url: "/Article/GetPrice",
+                cache: false,
+                data: {
+                    id: id,
+                    offerId: offerId//Pole opcjonalne, optymalizacja wydajności                
+                },
+                async: true,
+                success: function (response) {
+                    GlobalPriceCache.store[id] = response;
+                    instance.renderPrice(GlobalPriceCache.store[id]);
+                    //console.log('id: '+id +' - '+ response.Data.price.Price + ' ' + response.Data.price.Currency);
+                }
+            });
+        }
+    }
+
+    AsynchronousPrice.prototype.renderPrice = function (response) {
+        var instance = this;
+        var grossPrice = instance.$element.hasClass('gross');
         var postfix = instance.$element.data('postfix');
-        $.ajax({
-            type: "POST",
-            url: "/Article/GetPrice",
-            cache: false,
-            data: {
-                id: id,
-                offerId: offerId//Pole opcjonalne, optymalizacja wydajności
-            },
-            async: true,
-            success: function (response) {
-                if (response.Data.price.Price!=null)
-                    instance.$element.text(response.Data.price.Price + ' ' + response.Data.price.Currency + (postfix!=null?postfix:''));
-                //console.log('id: '+id +' - '+ response.Data.price.Price + ' ' + response.Data.price.Currency);
-            }
-        });
-    };    
+        if (response.Data.price.Price != null)
+            instance.$element.text((grossPrice ? response.Data.price.GrossPrice : response.Data.price.Price) + ' ' + response.Data.price.Currency + (postfix != null ? postfix : ''));
+    }
     AsynchronousPrice.prototype.getPrice = function (id, offerId) {
         var instance = this;
-        
-    }    
+
+    }
     $.fn[pluginName] = function (options) {
         if (this.length == 1) {
             var pluginData = this.data('plugin_' + pluginName);

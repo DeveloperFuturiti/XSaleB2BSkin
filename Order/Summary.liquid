@@ -14,9 +14,10 @@
                                 <th style="width: 1%" class="text-center">Id.</th>
                                 <th>Artykuł</th>
                                 <th style="width: 8%" class="text-center">Ilość</th>
-                                <th style="width: 15%" class="text-center">Cena netto</th>
+                                <th style="width: 10%" class="text-center">Cena netto</th>
+                                <th style="width: 10%" class="text-center">Cena brutto</th>
                                 {% if ComplaintId != null%}
-                                <th style="width: 15%" class="text-center">Operacje</th>
+                                <th style="width: 10%" class="text-center">Operacje</th>
                                 {% endif %}
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                                 <td>{{article.Name}}</td>
                                 <td class="text-center">{{article.Ordered_quantity_to_display}} {% if article.Unit != null %} {{article.Unit}} {% else %} szt. {% endif %}</td>
                                 <td class="text-center"><span class="label label-primary price-label">{{article.Total_price_display}} {{CurrencyTypeName}} </span></td>
+                                <td class="text-center"><span class="label label-primary price-label">{{article.Total_gross_price_display}} {{CurrencyTypeName}} </span></td>
                                 {% if ComplaintId != null and article.Show_add_to_complaint %}
                                 <td class="text-center"><a href="/NowaPozycjaReklamacji/{{article.Order_item_id}}/{{ComplaintId}}" class="label label-warning price-label"><i class="fa fa fa-plus"></i> Dodaj pozycję do reklamacji </a></td>
                                 {% endif %}
@@ -38,23 +40,28 @@
                 </div>
                 <div class="ibox-content ibox-heading" style="height:150px;">
                     <div class="pull-right " style="text-align:right">
-                        <label>Netto:</label>
+                        <!--<label>Netto:</label>
                         <span> {{NetPriceDisplay}} {{CurrencyTypeName}} </span>
-                        <br />
+                        <br />-->
                         <!--<label>VAT:</label>
                         <span> {{VatAmount}} {{CurrencyTypeName}}</span>
-                        <br />
-                        <label>Brutto:</label>
+                        <br />-->
+                        <!--<label>Brutto:</label>
                         <span> {{GrossPrice}} {{CurrencyTypeName}}</span>   
                         <br />-->
                         <label>Koszt dostawy netto:</label>
-                        <span> {{ShipmentPrice}} {{CurrencyTypeName}}</span>
-                        <br />
-                        <br />
+                        <span> {{ShipmentPrice}} {{CurrencyTypeName}}</span>                        
+                        <label> brutto:</label>
+                        <span> {{ShipmentGrossPrice}} {{CurrencyTypeName}}</span>         
                         <br />                                              
+                        <br />
+                        <br />                                                
                         <h3 class="text-navy">
                            Razem netto: {{TotalAmountDisplay}} {{CurrencyTypeName}}
-                        </h3>
+                        </h3>   
+                        <h4 class="text-navy">
+                            butto: {{TotalGrossAmountDisplay}} {{CurrencyTypeName}}
+                        </h4>                                             
                     </div>
                     <label> Forma dostawy:</label>
                     <span> {{DeliveryMethod}}</span>

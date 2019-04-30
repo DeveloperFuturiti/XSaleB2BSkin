@@ -20,8 +20,15 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <span> Transport: </span>
-            <span class="font-bold">{{DeliveryCost}} {{CurrencyTypeName}} netto</span>
+            <span> Brutto: </span>
+            <span class="font-bold">{{SumGrossAmountDisplay}} {{CurrencyTypeName}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <span> Transport netto:</span>
+            <span class="font-bold">{{DeliveryCost}} {{CurrencyTypeName}}  </span>
+            <span> brutto:</span><span class="font-bold">{{DeliveryGrossCost}} {{CurrencyTypeName}}</span>
         </div>
     </div>
     <div class="row">
@@ -30,14 +37,15 @@
             <span class="font-bold">{{CostCenter}}</span>
         </div>
     </div>
-    <div class="row">
+    <div class="row m-t-md">
         <div  class="col-lg-6">
             <h2> Łącznie </h2>
         </div>
         <div class="col-lg-6 text-right">
             <h2>{{TotalAmountDisplay}} {{CurrencyTypeName}} netto</h2>
-        </div>
-    </div>
+            <h4>{{TotalGrossAmountDisplay}} {{CurrencyTypeName}} brutto</h4>
+        </div>        
+    </div>    
     <div class="row">
     <div class="col-lg-12">
         <span class="help-block m-b-none text-danger" style="{% if ShowMinimalAmountAlert == false %} display:none; {% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalna wartość zamówienia {{MinimalAmount}} {{CurrencyTypeName}}</span>

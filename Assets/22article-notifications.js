@@ -15,7 +15,7 @@ function SetArticleNotification(offerStockPriceId) {
 function ArticleNotificationMessage() {
     swal({
         title: "",
-        text: "Zosostaniesz powiadomiony o dostępności tego towaru",
+        text: "Zostaniesz powiadomiony o dostępności tego towaru",
         type: "warning",
         showCancelButton: true,
         showConfirmButton: false,

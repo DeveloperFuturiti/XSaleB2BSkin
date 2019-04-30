@@ -6,8 +6,8 @@
         </div>
         <div class="ibox-content">            
             <label>{{LimitType}}</label> 
-            <label class="pull-right">{{Value}} {{Currency2}}</label> 
-            <h1 class="no-margins">{{CalculatedLimitLeft}} <small>{{Currency}}</small></h1>     
+            <label class="pull-right">{{Value}} {{Currency2}} {% if Value != null %} netto{% endif %} </label> 
+            <h1 class="no-margins">{{CalculatedLimitLeft}} <small>{{Currency}} netto</small></h1>     
             <!--<div class="stat-percent font-bold text-{{ApplicationTypeColor}}">{{LimitApplicationTypeName}}</div>-->                   
             <small>{{MainValueDescription}}</small>
             <br />

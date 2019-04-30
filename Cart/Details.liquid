@@ -38,8 +38,12 @@
                                         <span class="help-block m-b-none text-danger available-quantity-alert" style="{% if article.Show_available_quantity_alert == false %} display:none; {% endif %}">Wybrana ilość przekracza dostępny stan. Czas realizacji może wynieść {{article.Delivety_time_in_days}} dni.</span>
                                         <span class="help-block m-b-none text-danger minimal-quantity-alert" style="{% if article.Show_minimal_quantity_alert == false %} display:none; {% endif %}"><i class="fa fa-exclamation-circle"></i> Minimalna ilość tego artykułu to: {{article.Minimal_quantity}} szt.</span>
                                     </td>
-                                    <td style="min-width:90px;">
-                                        <span class="asynchronous-price-label" data-id="{{article.Id}}" data-offerid="{{article.Offer_id}}" data-postfix=" netto"></span>
+                                    <td style="min-width:150px;">
+                                        <span class="asynchronous-price-label font-bold" data-id="{{article.Id}}" data-offerid="{{article.Offer_id}}" data-postfix=" netto"></span>
+                                        <br />
+                                        <span class="asynchronous-price-label gross" data-id="{{article.Id}}" data-offerid="{{article.Offer_id}}" data-postfix=" brutto"></span>
+                                        <br />
+                                        <span class="">VAT: {{article.Vat_rate}}%</span>
                                         <!--<s class="small text-muted">{{article.Stock_price}}</s>-->
                                     </td>
                                     <td>
@@ -78,10 +82,12 @@
                                             <span class="input-group-addon">{% if article.Unit != null %}{{article.Unit}}{% else %}szt.{% endif %}</span>
                                         </div>
                                     </td>
-                                    <td style="min-width:100px;">
-                                        <label>Łącznie</label>
+                                    <td style="min-width:150px;">
+                                        <label>Łącznie:</label>
                                         <br />
                                         <span><label class="total-price">{{article.Total_price_display}}</label> <label>{{CurrencyTypeName}}</label> <label>netto</label></span>
+                                        <br />
+                                        <span class="total-gross-price">{{article.Total_gross_price_display}}</span><span> {{CurrencyTypeName}} brutto</span>
                                     </td>
                                 </tr>
                             </tbody>

@@ -77,7 +77,11 @@
             var $this = $(e.currentTarget);
             var id = $this.closest('.cart-details').data('id');
             if (instance.validateAdditionalDataForm()) {
-                location = '/Koszyk/Podsumowanie/' + id;
+                if (instance.submitAdditionalDataForm.apply(instance, [false, false])) {
+                    location = '/Koszyk/Podsumowanie/' + id;
+                } else {
+                    SAlert.Warning("Wystąpił problem z wybraną metodą dostawy " + $('[name=DeliveryMethod] :selected').text() + ", skontaktuj się z administratorem systemu.");
+                }
             }                
         });
         instance.$element.on('click', '.send-offer', function (e) {
@@ -94,7 +98,7 @@
             //if (!instance.submitAdditionalDataForm.apply(instance, [false, false])) {
             //    return 'Błąd podczas zapisu danych zamówienia';
             //}            
-            instance.submitAdditionalDataForm.apply(instance, [false, false]);
+            //instance.submitAdditionalDataForm.apply(instance, [true, false]);
         };        
     };
     CartDetails.prototype.deleteItem = function (id, $url) {
@@ -182,6 +186,7 @@
                         $field.closest('.shoping-cart-table').find('.minimal-quantity-alert').hide();
                     }
                     $field.closest('.shoping-cart-table').find('.total-price').text(data.Data.totalPrice != null ? data.Data.totalPrice : '');
+                    $field.closest('.shoping-cart-table').find('.total-gross-price').text(data.Data.totalGrossPrice != null ? data.Data.totalGrossPrice : '');
                     instance.references.$cartSummary.trigger('reload');
                 } else {
                 }
