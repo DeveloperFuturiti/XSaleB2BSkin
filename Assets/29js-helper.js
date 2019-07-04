@@ -32,7 +32,8 @@
     },
     string: {
         encodeSpecialCharactersMVCUrl: function (s) {
-            var s = encodeURI(s.replace(/:/g, "").replace(/&/g, "").replace(/#/g, "").replace(/\?/g, "").replace(/\//g, "").replace(/\%/g, "").replace(/\+/g, "").replace(/=/g, ""));
+            var s = s.trim();
+             s = encodeURI(s.replace(/:/g, "").replace(/&/g, "").replace(/#/g, "").replace(/\?/g, "").replace(/\//g, "").replace(/\%/g, "").replace(/\+/g, "").replace(/=/g, ""));
             var i = 0;
             while (s.includes('\\') && i < 500) {
                 s = s.replace('\\', "");
@@ -41,13 +42,29 @@
             return s;
         },
         encodeSpecialCharactersMVCUrl2: function (s) {
-            var s = encodeURI(s.replace(/:/g, "*!1!").replace(/&/g, "*!2!").replace(/#/g, "*!3!").replace(/\?/g, "*!4!").replace(/\//g, "*!5!").replace(/\%/g, "*!7!").replace(/\+/g, "*!8!").replace(/=/g, "*!9!"));
+            var s = s.trim();
+            s = encodeURI(s.replace(/:/g, "*!1!").replace(/&/g, "*!2!").replace(/#/g, "*!3!").replace(/\?/g, "*!4!").replace(/\//g, "*!5!").replace(/\%/g, "*!7!").replace(/\+/g, "*!8!").replace(/=/g, "*!9!"));
             var i = 0;
             while (s.includes('\\') && i < 500) {
                 s = s.replace('\\', "*!6!");
                 i++;
             }
             return s;
+        },
+        removeSpecialCharactersMVCUrl: function (s) {
+            var s = (s.replace(/:/g, "").replace(/&/g, "").replace(/#/g, "").replace(/\?/g, "").replace(/\//g, "").replace(/\%/g, "").replace(/\+/g, "").replace(/\*/g, "").replace(/=/g, ""));
+            var i = 0;
+            while (s.includes('\\') && i < 500) {
+                s = s.replace('\\', "");
+                i++;
+            }
+            return s;
+        },
+
+    },
+    number: {
+        FormatTwoPlacesAndColon: function (number) {
+            return number.toFixed(2).replace(".",",");
         }
     }
 }

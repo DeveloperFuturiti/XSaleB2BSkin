@@ -8,7 +8,7 @@
                             {% for imageId in Article.Image_ids %}
                             <div>
                                 <div class="product-image-box">
-                                    <img class="image" alt="Zdjęcie" {% if imageId == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="/Article/GetImageBinary/{{imageId}}" {% endif %}>
+                                    <img class="image" alt="Zdjęcie" {% if imageId == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{imageId}}" {% endif %}>                                    
                                 </div>
                             </div>
                             {% endfor %}
@@ -104,7 +104,7 @@
                                                         <div class="file no-margins" style="width:100%;">
                                                             <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                                                 <div class="image">
-                                                                    <img alt="{{article.Name}}" class="product-min-image" src="/Article/GetImageByOfferId?offerId={{article.Offer_id}}">
+                                                                    <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail2" {% endif %}>
                                                                 </div>
                                                                 <div class="file-name truncate">
                                                                     {{article.Name}}
@@ -141,37 +141,37 @@
                 </div>
                 <div class="row">
                     <!--<div class="col-md-6">
-                        <hr>
-                        <h3>Zamienniki</h3>
-                        <div class="slick-replacements m-r-md m-l-md" style="display:none">
-                            {% for block in ReplacementBlocks %}
-                            <div>
-                                <div class="products-min varianst">
-                                    <div class="col-lg-12 no-padding">
-                                        <div class="row">
-                                            {% for article in block %}
-                                            <div class="col-lg-3">
-                                                <div class="file-box" style="width:100%;">
-                                                    <div class="file no-margins" style="width:100%;">
-                                                        <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
-                                                            <div class="image">
-                                                                <img alt="{{article.Name}}" class="product-min-image" src="/Article/GetImageByOfferId?offerId={{article.Offer_id}}">
-                                                            </div>
-                                                            <div class="file-name truncate">
-                                                                {{article.Name}}
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
+        <hr>
+        <h3>Zamienniki</h3>
+        <div class="slick-replacements m-r-md m-l-md" style="display:none">
+            {% for block in ReplacementBlocks %}
+            <div>
+                <div class="products-min varianst">
+                    <div class="col-lg-12 no-padding">
+                        <div class="row">
+                            {% for article in block %}
+                            <div class="col-lg-3">
+                                <div class="file-box" style="width:100%;">
+                                    <div class="file no-margins" style="width:100%;">
+                                        <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
+                                            <div class="image">
+                                                <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail2" {% endif %}>
                                             </div>
-                                            {% endfor %}
-                                        </div>
+                                            <div class="file-name truncate">
+                                                {{article.Name}}
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
                         </div>
-                    </div>-->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>-->
                     <div class="col-md-12 ">
                         <hr>
                         <h3>Inni klienci kupili również</h3>
@@ -187,7 +187,7 @@
                                                     <div class="file no-margins" style="width:100%;">
                                                         <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                                             <div class="image">
-                                                                <img alt="{{article.Name}}" class="product-min-image" src="/Article/GetImageByOfferId?offerId={{article.Offer_id}}">
+                                                                <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail2" {% endif %}>
                                                             </div>
                                                             <div class="file-name truncate">
                                                                 {{article.Name}}

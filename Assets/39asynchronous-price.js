@@ -57,7 +57,7 @@
         var grossPrice = instance.$element.hasClass('gross');
         var postfix = instance.$element.data('postfix');
         if (response.Data.price.Price != null)
-            instance.$element.text((grossPrice ? response.Data.price.GrossPrice : response.Data.price.Price) + ' ' + response.Data.price.Currency + (postfix != null ? postfix : ''));
+            instance.$element.text((grossPrice ? JsHelper.number.FormatTwoPlacesAndColon(response.Data.price.GrossPrice) : JsHelper.number.FormatTwoPlacesAndColon(response.Data.price.Price) ) + ' ' + response.Data.price.Currency + (postfix != null ? postfix : ''));
     }
     AsynchronousPrice.prototype.getPrice = function (id, offerId) {
         var instance = this;
