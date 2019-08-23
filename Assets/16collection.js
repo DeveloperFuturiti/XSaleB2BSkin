@@ -48,7 +48,7 @@
         var scrollheight = instance.element.scrollHeight;
         var elementClientHeight = instance.element.clientHeight;
         var documentScrollHeight = $('html')[0].scrollHeight;
-        var documentScrolltop = $('html')[0].scrollTop;
+        var documentScrolltop = window.pageYOffset;
         var documentClientHeight = $('html')[0].clientHeight;
         var scrolloffset = 2000;
         if (reload == true) {
