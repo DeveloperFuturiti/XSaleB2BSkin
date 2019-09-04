@@ -35,12 +35,14 @@
                             timer: 3 * 1000,
                             showConfirmButton: true,
                             type: "success",
-                            html: true,                        
+                            html: true,          
+                            closeOnClickOutside: false,
                             //showCancelButton: true,
                             //cancelButtonText: 'OK'
                         }, function () {
                             location = '/';
-                        });                    
+                            });    
+                        setTimeout(() => { location = '/'; }, 3000);
                     } else {
                         console.log(result.Data.Errors);
                         SAlert.Warning(result.Data.ErrorMessage);
@@ -88,12 +90,14 @@
                             timer: 3 * 1000,
                             showConfirmButton: true,
                             type: "success",
-                            html: true,                        
+                            html: true,    
+                            
                             //showCancelButton: true,
                             //cancelButtonText: 'OK'
                         }, function () {
                             location = '/';
-                        });                    
+                            });
+                        setTimeout(() => { location = '/'; }, 3000);
                     } else {
                         console.log(result.Data.Errors);
                         SAlert.Warning(result.Data.ErrorMessage);
