@@ -25,7 +25,7 @@
             var $this = $(e.currentTarget);
             var id = $this.closest('.cart-details').data('id');            
             let submitWithMessage = function () {
-                if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+                if (instance.checkAddressDataForm.apply(instance, [false, false])) {
                     var result = instance.finalizeOrder();
                     if (result.Success) {
                         instance.options.finalized = true;
@@ -80,7 +80,7 @@
             var $this = $(e.currentTarget);
             var id = $this.closest('.cart-details').data('id');            
             let submitWithMessage = function () {
-                if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+                if (instance.checkAddressDataForm.apply(instance, [false, false])) {
                     var result = instance.sendToAccept();
                     if (result.Success) {
                         instance.options.finalized = true;
@@ -125,7 +125,7 @@
         var $this = $(instance);
         var id = $this.closest('.cart-details').data('id');
         let submitWithMessage = function () {
-            if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+            if (instance.checkAddressDataForm.apply(instance, [false, false])) {
                 var result = instance.cancelCart();
                 if (result.Success) {
                     instance.options.finalized = true;
@@ -176,7 +176,7 @@
         var $this = $(instance);
         var id = $this.closest('.cart-details').data('id');
         let submitWithMessage = function () {
-            if (instance.submitAddressDataForm.apply(instance, [false, false])) {
+            if (instance.checkAddressDataForm.apply(instance, [false, false])) {
                 var result = instance.deleteCart();
                 if (result.Success) {
                     instance.options.finalized = true;
@@ -277,45 +277,39 @@
         }        
         return false;
     };
-    CartSummary.prototype.submitAddressDataForm = function (async, reloadSummary) {
+    CartSummary.prototype.checkAddressDataForm = function (async, reloadSummary) {
         var instance = this;
         if (instance.options.finalized) {
             return true;
         }
-        if (instance.validateAddressDataForm()) {
-        //    var id = instance.$element.data('id');
-        //    var formSerialized = instance.references.$addressDataForm.serialize();
-        //    formSerialized.Id = id;
-        //    var result = $.ajax({
-        //        type: 'POST',
-        //        url: '/Cart/AddressData',
-        //        cache: false,
-        //        data: formSerialized,
-        //        async: async != null ? async : true,
-        //        success: function (data) {
-        //            if (data.Success) {
-        //            } else {
-        //            }
-        //            if (reloadSummary == true) {
-        //                instance.references.$cartSummary.trigger('reload');
-        //            }
-        //        }
-        //    });
-        //    if (async != null && async == false) {
-        //        if (result != null && result.responseJSON != null && result.responseJSON.Success) {
-        //            return true;
-        //        } else {
-        //            return false;
-        //        }
-        //    }
+        if (instance.isAddressSaved()) {
             return true;
+        } else {
+            swal({
+                title: "",
+                text: 'Nie zapisano formularza adresu',
+                showConfirmButton: true,
+                type: "warning",
+                html: true
+            });
+            return false;
         }
-        return false;
     };    
     CartSummary.prototype.validateAddressDataForm = function () {
         var instance = this;
         return instance.references.$addressDataForm.valid();
     };
+
+    CartSummary.prototype.isAddressSaved = function () {
+        let instance = this;
+        let attr = instance.references.$addressDataForm.find('[name=Name]').attr('readonly');
+        if (attr) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     $.fn[pluginName] = function (options) {
         if (this.length == 1) {
             var pluginData = this.data('plugin_' + pluginName);
