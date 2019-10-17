@@ -83,7 +83,6 @@
             }, function (isConfirm) {
                 if (isConfirm) {
                     instance.deleteCart(cartId);
-                } else {                    
                 }
             });
         });
@@ -200,7 +199,29 @@
             success: function (data) {
                 if (data.Success) {
                     instance.updateMainCart(data.Data.cartId, data.Data.cartItems);
+                    var cartIdView = $(document).find('#cart-details').data('id');
+                    if (cartIdView == null)
+                        cartIdView = $(document).find('#cart-summary').data('id');
+                    if (cartIdView != null && cartIdView == selectedCart) {
+                        instance.options.finalized = true;
+                        //swal({//Można włączyć jeszcze potwierdzenie usunięcia koszyka na 3 sek
+                        //    title: "",
+                        //    text: 'Koszyk został usunięty',
+                        //    timer: 3 * 1000,
+                        //    showConfirmButton: true,
+                        //    type: "success",
+                        //    html: true,
+                        //    //showCancelButton: true,
+                        //    //cancelButtonText: 'OK'
+                        //}, function () {
+                        //    location = '/';
+                        //});
+                        //setTimeout(() => { location = '/'; }, 3 * 1000);
+                        location = '/';//Albo tylko przeniesienie do strony głównej
+                    }
                 } else {
+                    console.log(result.Data.Errors);
+                    SAlert.Warning(result.Data.ErrorMessage);
                 }
             }
         });
