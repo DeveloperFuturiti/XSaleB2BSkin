@@ -220,8 +220,8 @@
                         location = '/';//Albo tylko przeniesienie do strony głównej
                     }
                 } else {
-                    console.log(result.Data.Errors);
-                    SAlert.Warning(result.Data.ErrorMessage);
+                    console.log(data.Data.Errors);
+                    SAlert.Warning(data.Data.ErrorMessage);
                 }
             }
         });
