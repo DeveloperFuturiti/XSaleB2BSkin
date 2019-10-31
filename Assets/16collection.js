@@ -18,7 +18,9 @@
             stopLoading: false,
             limit: null,
             columnNumber: null,
-            itemWidth: null,            
+            itemWidth: null,
+            orderBy: null,
+            orderByType: null
         };
         this.init();
     };
@@ -28,6 +30,12 @@
         var pageSize = this.$element.data('pagesize');
         if (pageSize!=null)
             instance.references.pageSize = pageSize;
+        var orderBy = this.$element.data('orderby');
+        if (orderBy != null)
+            instance.references.orderBy = orderBy;
+        var orderByType = this.$element.data('orderbytype');
+        if (orderByType != null)
+            instance.references.orderByType = orderByType;
         var limit = this.$element.data('limit');
         if (limit != null)
             instance.references.limit = limit;
@@ -90,20 +98,20 @@
                 onlyAvailableFilterVal = false;
             }
             
-            orderBy = null;
-            orderByType = null;
+            orderBy = instance.references.orderBy;
+            orderByType = instance.references.orderByType;
             var $orderByBtn = $('.sort-filter').first();
             if ($orderByBtn !== null && $orderByBtn !== undefined) {
                 var val = $orderByBtn.val();
                 if (val !== null) {
                     if (val == 0) {
-                        orderBy = "";
-                        orderByType = "";
+                        orderBy = instance.references.orderBy;
+                        orderByType = instance.references.orderByType;
                     } else if (val == 1) {
                         orderBy = "name";
                         orderByType = "asc";
                     } else if (val == 2) {
-                        orderBy = "name";
+                        orderBy = "offerStockPriceId";
                         orderByType = "desc";
                     } else if (val == 3) {
                         orderBy = "priceQuick";
