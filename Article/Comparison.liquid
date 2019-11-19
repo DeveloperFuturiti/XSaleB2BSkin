@@ -40,7 +40,7 @@
                                     </dl>
                                 </div>
                                 <div class="btn-group add-to-cart-container">
-                                    <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{% if article.Quantitydisplay == null %} 0 {% else %} {{article.Quantitydisplay}} {% endif %} </button>
+                                    <button class="btn btn-white btn-sm available-stock-state" title="Dostępne">{{article.Quantitydisplay}} </button>
                                     <div class="btn btn-white btn-sm order-quantity-container">
                                         <div class="input-group">
                                             <input class="quantity add-to-cart-quantity" type="text" name="orderQuantity" placeholder="1" title="Ilość sztuk">
