@@ -66,14 +66,13 @@
                     
                     <ul class="nav navbar-top-links navbar-right">
                         <li style="display:inline-block" class="pull-right">
-
-                            <form action="/Account/LogOff" style="text-align:center;" id="logoutForm" method="post">
+                            <form action="/Account/LogOff" style="text-align:center; margin-top:7px" id="logoutForm" method="post">
                                 {% if  UseLimits == true %}
                                 <a href="/Rozliczenia" class="no-padding" style="min-height :0px;"><strong class="text-muted">Limit</strong> <strong class="text-danger">{{AvailableLimit}} netto</strong></a>
                                 {% endif %}
-                                <br />
                                 {{LogOutAntiForgery}}
                                 <a href="javascript:document.getElementById('logoutForm').submit()" class="no-padding"><i class="fa fa-sign-out fa-align-center "></i> Wyloguj</a>
+                                <p><small>({{UserContext.Login}})</small></p>
                             </form>
                         </li>
                         <li id="cart-navbar" class="dropdown pull-right" style="display:inline-block" data-defaultcart="{{UserContext.Default_cart}}" data-url="/Cart/GetCartList">
