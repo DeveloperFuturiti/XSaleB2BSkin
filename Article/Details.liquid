@@ -185,6 +185,12 @@
                                             {% for article in block %}
                                             <div class="col-lg-3">
                                                 <div class="file-box" style="width:100%;">
+                                                   {% if article.Relatedai %}
+                                                    <label class="product-related-ai" title="Oferta zasugerowana przez sztuczną inteligencję xSale B2B">
+                                                        <i class="fa fa-bookmark fa-3x"></i>
+                                                    </label>
+                                                    <label class="product-related-ai-label" title="Oferta zasugerowana przez sztuczną inteligencję xSale B2B">AI</label>
+                                                    {% endif %}
                                                     <div class="file no-margins" style="width:100%;">
                                                         <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                                             <div class="image">

@@ -6697,6 +6697,21 @@ table.shoping-cart-table {
     right: 25px;
 }
 
+.product-related-ai {
+    font-size: 9px;
+    color: #29856a;
+    position: absolute;
+    top: -1px;
+    right: 25px;
+    z-index: 1000;
+}
+.product-related-ai-label {
+    position: absolute;
+    right: 28px;
+    z-index: 1001;
+    color: white;
+}
+
 .product-detail .ibox-content {
     padding: 30px 30px 50px 30px;
 }
