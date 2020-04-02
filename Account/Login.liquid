@@ -9,9 +9,9 @@
             <p>
                 <!--<small>post scriptum</small>-->
             </p>
-            {% if LogoBase64 != blank %}
+            {% if LogoId != 0 %}
             <p class="m-t-md text-center">
-                <a href="javascript:void(0);"><img src="{{LogoBase64}}" style="max-width:350px;" alt="Logo"></a>
+                <a href="javascript:void(0);"><img src="{{ResAddress}}Res/Img?o={{dbId}}&b={{LogoId}}" style="max-width:350px;" alt="Logo"></a>
             </p>
             {% endif %}                           
         </div>
@@ -50,6 +50,6 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        changeFavicon('/File/GetFavicon?orgId={{dbId}}&rand=' + makeid());
+        changeFavicon('{{ResAddress}}Res/Img?o={{dbId}}&b={{FaviconId}}')
     });
 </script>

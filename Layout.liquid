@@ -33,7 +33,7 @@
     <nav class="navbar navbar-static-top border-bottom" style="margin-bottom: 0">
         <div class="">
             <div class="navbar-header" role="navigation">
-                <a class="im" href="/" aria-hidden="true"> <img style="height: 100%; width: 100%; display: block;" class="img-fluid  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{Company.Image_base64}}" {% endif %} style="height: 100%; width: 100%; display: block;" alt="Logo"> </a>
+                <a class="im" href="/" aria-hidden="true"> <img style="height: 100%; width: 100%; display: block;" class="img-fluid  m-t-xs  logo-image pull-left" {% if Company.Image_base64 == blank %}  {% else %} src="{{ResAddress}}Res/Img?o={{OrganizationId}}&b={{LogoId}}" {% endif %} style="height: 100%; width: 100%; display: block;" alt="Logo"> </a>
             </div>
             <!--<div class="navbar-header">
                 <span class="navbar-minimalize minimalize-styl-2 m-t-lg ">{{Company.Name}}  {{Title}}</span>
@@ -229,7 +229,7 @@
 <iframe id="downloadDocumentIframe" style="display:none;"></iframe>
 <script>
     $(document).ready(function () {
-        changeFavicon('/File/GetFavicon?orgId={{OrganizationId}}&rand=' + makeid())
+        changeFavicon('{{ResAddress}}Res/Img?o={{OrganizationId}}&b={{FaviconId}}')
         $('.footable').footable();
         $(document).on('click', '.download-file', function (event) {
             var url = $(this).data('url');
