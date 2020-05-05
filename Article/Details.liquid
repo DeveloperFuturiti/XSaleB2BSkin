@@ -5,10 +5,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="product-images" style="display:none">
-                            {% for imageId in Article.Image_ids %}
+                            {% for link in Article.Image_links %}
                             <div>
                                 <div class="product-image-box">
-                                    <img class="image" alt="Zdjęcie" {% if imageId == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{imageId}}" {% endif %}>                                    
+                                    <img class="image" alt="Zdjęcie" src="{{link}}">
                                 </div>
                             </div>
                             {% endfor %}
@@ -104,7 +104,7 @@
                                                         <div class="file no-margins" style="width:100%;">
                                                             <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                                                 <div class="image">
-                                                                    <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail1" {% endif %}>
+                                                                    <img alt="" class="product-min-image" src="{{article.Miniature1_link}}" >
                                                                 </div>
                                                                 <div class="file-name truncate">
                                                                     {{article.Name}}
@@ -155,7 +155,7 @@
                                     <div class="file no-margins" style="width:100%;">
                                         <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                             <div class="image">
-                                                <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail1" {% endif %}>
+                                                <img alt="{{article.Name}}" class="product-min-image" src="{{article.Miniature1_link}}">
                                             </div>
                                             <div class="file-name truncate">
                                                 {{article.Name}}
@@ -185,7 +185,7 @@
                                             {% for article in block %}
                                             <div class="col-lg-3">
                                                 <div class="file-box" style="width:100%;">
-                                                   {% if article.Relatedai %}
+                                                    {% if article.Relatedai %}
                                                     <label class="product-related-ai" title="Oferta zasugerowana przez sztuczną inteligencję xSale B2B">
                                                         <i class="fa fa-bookmark fa-3x"></i>
                                                     </label>
@@ -194,7 +194,7 @@
                                                     <div class="file no-margins" style="width:100%;">
                                                         <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                                             <div class="image">
-                                                                <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail1" {% endif %}>
+                                                                <img alt="{{article.Name}}" class="product-min-image" src="{{article.Miniature1_link}}">
                                                             </div>
                                                             <div class="file-name truncate">
                                                                 {{article.Name}}

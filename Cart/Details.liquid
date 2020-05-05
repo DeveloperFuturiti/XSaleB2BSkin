@@ -23,7 +23,7 @@
                                 <tr>
                                     <td>
                                         <div class="product-image-box">
-                                            <img class="image" alt="{{article.Name}}"  {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail3" {% endif %}">
+                                            <img class="image" alt="{{article.Name}}" src="{{article.Miniature1_link}}">
                                         </div>
                                     </td>
                                     <td class="desc">
@@ -119,7 +119,7 @@
                                     <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                         <!--<span class="corner"></span>-->
                                         <div class="image">
-                                            <img alt="{{article.Name}}" class="product-min-image"  {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail1" {% endif %}">
+                                            <img alt="{{article.Name}}" class="product-min-image" src="{{article.Miniature1_link}}">
                                         </div>
                                         <div class="file-name truncate">
                                             {{article.Name}}
@@ -228,7 +228,7 @@
                                     <a title="{{article.Name}}" href="/Towar/{{article.Id}}">
                                         <!--<span class="corner"></span>-->
                                         <div class="image">
-                                            <img alt="{{article.Name}}" class="product-min-image" {% if article.Image_id == null %} src="/Content/Assets/altArticleImage.png" {% else %} src="{{ResAddress}}Res/Img?o={{CurrentDbId}}&b={{article.Image_id}}&type=thumbnail1" {% endif %}">
+                                            <img alt="{{article.Name}}" class="product-min-image" src="{{article.Miniature1_link}}">
                                         </div>
                                         <div class="file-name truncate">
                                             {{article.Name}}
